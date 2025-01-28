@@ -1,0 +1,34 @@
+{
+  "name": "the_money_pit",
+  "version": "1.0.0",
+  "description": "A financial planner/helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server",
+    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "install": "cd server && npm i && cd ../client && npm i && npm run build",
+    "client:build": "cd client && npm run build",
+    "client:dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "seed": "cd server && npm run seed",
+    "render-build": "npm install && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.7",
+    "wait-on": "^7.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moth668/the_money_pit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moth668/the_money_pit/issues"
+  },
+  "homepage": "https://github.com/Moth668/the_money_pit#readme"
+}
