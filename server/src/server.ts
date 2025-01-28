@@ -13,7 +13,7 @@ const app = express();  // Create an express application?
 
 //Enviorment variables
 const PORT = process.env.PORT || 3001;
-const MONGO_URI = process.env.MONGODB_URI;  // Get the MongoDB URI from the environment variables
+const MONGO_URI = process.env.MONGODB_URI; || //mongodb://127.0.0.1:27017/moneyPitDB
 //ask Owen about line 16
 
 //middleware
