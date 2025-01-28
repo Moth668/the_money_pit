@@ -1,8 +1,8 @@
-import express { Request, Response } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { loginRouther } from './routes/index.js';
-import { protectedRouter } from './routes/protected';
+// import { loginRouther } from './routes/index.js';
+// import { protectedRouter } from './routes/protected';
 import db from './config/connection.js';
 
 // Configure environment variables
