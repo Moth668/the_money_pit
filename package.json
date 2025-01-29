@@ -17,6 +17,7 @@
     "render-build": "npm install && npm run build"
   },
   "devDependencies": {
+    "@types/node": "^22.12.0",
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.7",
     "wait-on": "^7.2.0"
@@ -30,5 +31,10 @@
   "bugs": {
     "url": "https://github.com/Moth668/the_money_pit/issues"
   },
-  "homepage": "https://github.com/Moth668/the_money_pit#readme"
+  "homepage": "https://github.com/Moth668/the_money_pit#readme",
+  "dependencies": {
+    "@apollo/client": "^3.12.8",
+    "graphql": "^16.10.0",
+    "react-router-dom": "^7.1.3"
+  }
 }
