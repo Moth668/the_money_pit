@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Define the API endpoint
-const API_ENDPOINT = 'http://localhost:5173/profile'; // Replace with your actual API endpoint
+const API_ENDPOINT = 'http://localhost:3001/graphql'; // Replace with your actual API endpoint
 
 /**
  * Save profile data to the server.

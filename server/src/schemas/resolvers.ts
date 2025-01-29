@@ -2,7 +2,7 @@ import { AuthenticationError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { User } from '../models/User';
-import { JWT_SECRET } from '../config';
+import { JWT_SECRET } from '../env';
 import type { IUserContext } from '../interfaces/UserContext';
 import type { IUserDocument } from '../interfaces/UserDocument';
 

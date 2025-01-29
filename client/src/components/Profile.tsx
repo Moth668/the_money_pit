@@ -86,7 +86,7 @@ const PersonalProfile: React.FC = () => {
           textAlign: "center",
         }}
       >
-        Personal Profile
+        Account Details
       </h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <div style={{ marginBottom: "16px" }}>
