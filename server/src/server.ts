@@ -1,12 +1,10 @@
 import express from 'express';
-import path from 'node:path';
-import type { Request, Response } from 'express';
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
 
-import { typeDefs, resolvers } from './schemas/index.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+// import { loginRouther } from './routes/index.js';
+// import { protectedRouter } from './routes/protected';
 
-// import routes from './routes/index.js';
 import db from './config/connection.js';
 import { authenticateToken } from './utils/auth.js';
 
