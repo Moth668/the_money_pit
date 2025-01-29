@@ -33,8 +33,9 @@ const PersonalProfile: React.FC = () => {
   };
 
   const addCard = () => {
-    if (newCard.trim() === "") {
-      alert("Card number cannot be empty.");
+    // Validate card number length (e.g., 16 digits for most cards)
+    if (newCard.trim().length !== 16) {
+      alert("Card number must be 16 digits.");
       return;
     }
 
@@ -72,9 +73,9 @@ const PersonalProfile: React.FC = () => {
         margin: "20px auto",
         padding: "50px",
         border: "2px solid #ccc",
-        borderRadius: "15px",
-        backgroundColor: "#f9f9f9",
-        color: "#333",
+        borderRadius: "25px",
+        backgroundColor: "#000",
+        color: "#999",
       }}
     >
       <h2
@@ -191,7 +192,8 @@ const PersonalProfile: React.FC = () => {
           <ul style={{ listStyleType: "none", padding: 0 }}>
             {profile.cards.map((card, index) => (
               <li key={index} style={{ marginBottom: "8px" }}>
-                {card}{" "}
+                **** **** **** {card.slice(-4)}{" "}
+                {/* Show only the last 4 digits */}
                 <button
                   type="button"
                   onClick={() => removeCard(index)}
