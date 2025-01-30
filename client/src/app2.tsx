@@ -1,29 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/layout";
-import Dashboard from "../../client/src/pages/Dashboard"; 
-import MonthlyIncome from "../../client/src/pages/MonthlyIncome";
-import MonthlyExpenses from "../../client/src/pages/MonthlyExpenses";
-import CurrentSavings from "../../client/src/pages/CurrentSavings";
-import InvestmentBalance from "../../client/src/pages/InvestmentBalance";
+import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Provider } from "@/components/ui/provider";
 
+// Debug Component to Log Current Location
+const DebugLocation: React.FC = () => {
+  const location = useLocation();
+  console.log('Current Path:', location.pathname);
+  return null; // This component doesn't render anything on the UI
+};
+
+// Layout Component for Navigation and Main Content
 const App: React.FC = () => {
   return (
-    <ChakraProvider>
-      <Router>
-        <Box>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/monthly-income" element={<MonthlyIncome />} />
-            <Route path="/monthly-expenses" element={<MonthlyExpenses />} /> 
-            <Route path="/current-savings" element={<CurrentSavings />} />
-            <Route path="/investment-balance" element={<InvestmentBalance />} />
-            {/* Add more routes here as needed */}
-          </Routes>
-        </Box>
-      </Router>
-    </ChakraProvider>
+      <Provider>
+        <h1>App Loaded</h1>
+          <DebugLocation />
+          <Outlet />
+      </Provider>
   );
 };
 
