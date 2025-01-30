@@ -34,6 +34,7 @@
   "homepage": "https://github.com/Moth668/the_money_pit#readme",
   "dependencies": {
     "@apollo/client": "^3.12.8",
+    "apollo-server": "^3.13.0",
     "graphql": "^16.10.0",
     "react-router-dom": "^7.1.3"
   }

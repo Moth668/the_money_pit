@@ -1,21 +1,18 @@
-// import { React, useState } from 'react'
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import PersonalProfile from './components/Profile'
+import ViewProfile from "./components/ViewProfile";
+import UpdateProfile from "./components/UpdateProfile";
 
-function App(){
-  // const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
     <Router>
-        <Routes>
-        <Route path="/" element={<div>Home Page</div>} />
-        <Route path="/profile" element={<PersonalProfile />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/profile" element={<ViewProfile />} />
+        <Route path="/update-profile" element={<UpdateProfile />} />
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
+    </Router>
   );
 };
 
-export default App
+export default App;
