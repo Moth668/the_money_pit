@@ -15,8 +15,13 @@ const CurrentSavings: React.FC = () => {
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
-  const savingsCategories = data.currentSavings.map((savings: any) => savings.category);
-  const amounts = data.currentSavings.map((savings: any) => savings.amount);
+  interface Savings {
+    category: string;
+    amount: number;
+  }
+
+  const savingsCategories = data.currentSavings.map((savings: Savings) => savings.category);
+  const amounts = data.currentSavings.map((savings: Savings) => savings.amount);
 
   const chartData = {
     labels: savingsCategories,

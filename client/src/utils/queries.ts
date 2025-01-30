@@ -9,22 +9,18 @@ query GET_USER_DETAILS($id: ID!) {
         Income {
             month
             income
-            date
         }
         Expenses {
             month
             expense
-            date
         }
         Savings {
             month
             savings
-            date
         }
         Investments {
             month
             investment
-            date
         }
     }
 }`
@@ -34,7 +30,6 @@ query GET_CURRENT_SAVINGS($id: ID!) {
         Savings {
             month
             savings
-            date
         }
     }
 }`
@@ -45,7 +40,6 @@ query GET_MONTHLY_INCOME($id: ID!) {
         Income {
             month
             income
-            date
         }
     }
 }`
@@ -56,7 +50,6 @@ query GET_MONTHLY_EXPENSES($id: ID!) {
         Expenses {
             month
             expense
-            date
         }
     }
 }`
@@ -67,7 +60,6 @@ query GET_INVESTMENT_BALANCE($id: ID!) {
         Investments {
             month
             investment
-            date
         }
     }
 }`;

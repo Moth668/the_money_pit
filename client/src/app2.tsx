@@ -1,6 +1,13 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, Routes, useLocation } from 'react-router-dom';
 import { Provider } from "@/components/ui/provider";
+import { Route } from 'react-router-dom';
+import Home from "./pages/Home";
+import MonthlyIncome from "./pages/MonthlyIncome";
+import MonthlyExpenses from "./pages/MonthlyExpenses";
+import CurrentSavings from "./pages/CurrentSavings";
+import InvestmentBalance from "./pages/InvestmentBalance";
+
 
 // Debug Component to Log Current Location
 const DebugLocation: React.FC = () => {
@@ -13,9 +20,16 @@ const DebugLocation: React.FC = () => {
 const App: React.FC = () => {
   return (
       <Provider>
-        <h1>App Loaded</h1>
-          <DebugLocation />
-          <Outlet />
+        <h1>The Money Pit</h1>
+        <DebugLocation />
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/monthly-income" element={<MonthlyIncome />} />
+        <Route path="/monthly-expenses" element={<MonthlyExpenses />} />
+        <Route path="/current-savings" element={<CurrentSavings />} />
+        <Route path="/investment-balance" element={<InvestmentBalance />} />
+        </Routes>
+        <Outlet />
       </Provider>
   );
 };
