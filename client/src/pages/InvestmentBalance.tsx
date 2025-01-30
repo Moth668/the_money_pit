@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale } from 'chart.js/auto';
-import { GET_INVESTMENT_BALANCE } from './queries';
+import { GET_INVESTMENT_BALANCE } from '../utils/queries';
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
 
