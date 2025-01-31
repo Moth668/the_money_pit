@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ViewProfile from "./components/ViewProfile";
+import ViewProfile from "./components/UserProfile/ViewProfileCard";
 import UpdateProfile from "./components/UpdateProfile";
 import "./App.css";
 
