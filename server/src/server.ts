@@ -1,18 +1,21 @@
-import express from 'express';
-import path from 'node:path';
-import type { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-
 import { typeDefs, resolvers } from './schemas/index.js';
+import { expressMiddleware } from '@apollo/server/express4';
+import path  from 'node:path';
+// import { loginRouther } from './routes/index.js';
+// import { protectedRouter } from './routes/protected';
 
-// import routes from './routes/index.js';
 import db from './config/connection.js';
 import { authenticateToken } from './utils/auth.js';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  introspection: true
 });
 
 const startApolloServer = async () => {
@@ -32,10 +35,10 @@ const startApolloServer = async () => {
   ));
 
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
 
     app.get('*', (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
   }
 
