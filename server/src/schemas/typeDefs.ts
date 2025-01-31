@@ -1,4 +1,6 @@
-const user = `
+import { gql } from 'graphql-tag';
+
+export const user = `
   type Query {
     name: String
     monthlyIncome: [Income]
@@ -29,3 +31,26 @@ const user = `
 `;
 
 export default user;
+
+export const typeDefs = gql`
+  type User {
+    username: String!
+    email: String
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+  type Query {
+    me: User
+  }
+
+  type Mutation {
+    login(login: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+  }
+`;
+
+// export default typeDefs;

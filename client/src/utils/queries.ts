@@ -1,7 +1,5 @@
 import { gql } from '@apollo/client';
 
-
-
 export const GET_USER_DETAILS = gql`
 query GET_USER_DETAILS($id: ID!) {
     user(id: $id) {
@@ -62,4 +60,14 @@ query GET_INVESTMENT_BALANCE($id: ID!) {
             investment
         }
     }
-}`;
+}`
+
+export const QUERY_ME = gql`
+   {
+    me {
+      _id
+      username
+      email
+    }
+  }
+`;
