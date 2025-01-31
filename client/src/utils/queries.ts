@@ -60,15 +60,14 @@ query GET_INVESTMENT_BALANCE($id: ID!) {
             investment
         }
     }
-}`;
+}`
 
 export const QUERY_ME = gql`
-  {
+   {
     me {
       _id
       username
       email
-      }
     }
   }
 `;

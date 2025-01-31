@@ -5,22 +5,23 @@ import MonthlyIncome from "./pages/MonthlyIncome";
 import MonthlyExpenses from "./pages/MonthlyExpenses";
 import CurrentSavings from "./pages/CurrentSavings";
 import InvestmentBalance from "./pages/InvestmentBalance";
-//import Home from "./pages/Home"
+import Home from "./pages/Home"
 import App from './app2.tsx'
 
 console.log("Main.tsx is executing...");
 
 const router = createBrowserRouter([
   {
-    path: '/*',
+    path: '/',
     element: <App />,
     // errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Dashboard /> },
-      { path: './pages/MonthlyIncome', element: <MonthlyIncome /> },
-      { path: './pages/MonthlyExpenses', element: <MonthlyExpenses /> },
-      { path: './pages/CurrentSavings', element: <CurrentSavings /> },
-      { path: './pages/InvestmentBalance', element: <InvestmentBalance /> },
+      { index: true, element: <Home /> },
+      { path: '/Dashboard', element: <Dashboard /> },
+      { path: '/MonthlyIncome', element: <MonthlyIncome /> },
+      { path: '/MonthlyExpenses', element: <MonthlyExpenses /> },
+      { path: '/CurrentSavings', element: <CurrentSavings /> },
+      { path: '/InvestmentBalance', element: <InvestmentBalance /> },
     ],
   },
 ]);

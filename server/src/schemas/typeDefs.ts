@@ -1,6 +1,6 @@
 import { gql } from 'graphql-tag';
 
-const user = `
+export const user = `
   type Query {
     name: String
     monthlyIncome: [Income]
@@ -32,7 +32,7 @@ const user = `
 
 export default user;
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type User {
     username: String!
     email: String
@@ -53,4 +53,4 @@ const typeDefs = gql`
   }
 `;
 
-export default typeDefs;
+// export default typeDefs;
