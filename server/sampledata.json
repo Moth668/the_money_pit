@@ -1,0 +1,105 @@
+import React, { useState } from 'react';
+
+interface FinancialData {
+    income: number;
+    expenses: number;
+    savings: number;
+    investments: number;
+}
+
+interface FinancialDataFormProps {
+    onSubmit: (data: FinancialData) => void;
+}
+
+const FinancialDataForm: React.FC<FinancialDataFormProps> = ({ onSubmit }) => {
+    // State variables for user inputs
+    const [income, setIncome] = useState<string>('');
+    const [expenses, setExpenses] = useState<string>('');
+    const [savings, setSavings] = useState<string>('');
+    const [investments, setInvestments] = useState<string>('');
+    const [error, setError] = useState<string>('');
+
+    // Handle form submission
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        // Validate inputs
+        if (!income || !expenses || !savings || !investments) {
+            setError('Please fill in all fields with valid numbers.');
+            return;
+        }
+
+        // Check if all fields are numbers
+        if (isNaN(Number(income)) || isNaN(Number(expenses)) || isNaN(Number(savings)) || isNaN(Number(investments))) {
+            setError('All fields must be numeric values.');
+            return;
+        }
+
+        // Create an object with the financial data
+        const financialData: FinancialData = {
+            income: parseFloat(income),
+            expenses: parseFloat(expenses),
+            savings: parseFloat(savings),
+            investments: parseFloat(investments),
+        };
+
+        // Clear error and call the onSubmit function passed from the parent
+        setError('');
+        onSubmit(financialData);
+
+        // Clear the form
+        setIncome('');
+        setExpenses('');
+        setSavings('');
+        setInvestments('');
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label>
+                    Monthly Income:
+                    <input
+                        type="number"
+                        value={income}
+                        onChange={(e) => setIncome(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Total Monthly Expenses:
+                    <input
+                        type="number"
+                        value={expenses}
+                        onChange={(e) => setExpenses(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Current Savings:
+                    <input
+                        type="number"
+                        value={savings}
+                        onChange={(e) => setSavings(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Current Investment Balance:
+                    <input
+                        type="number"
+                        value={investments}
+                        onChange={(e) => setInvestments(e.target.value)}
+                    />
+                </label>
+            </div>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
+
+
