@@ -1,15 +1,18 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import "./App.css";
-import ViewProfile from "./components/UserProfile/ViewProfile";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ViewProfile from "./components/ViewProfile";
+import UpdateProfile from "./components/UpdateProfile";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <ViewProfile />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/profile" element={<ViewProfile />} />
+        <Route path="/update-profile" element={<UpdateProfile />} />
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -1,19 +1,14 @@
 import { AuthenticationError } from 'apollo-server-express';
-// import jwt from 'jsonwebtoken';
-// import bcrypt from 'bcrypt';
-import User from '../models/User.js';
-// import { JWT_SECRET } from '../config';
-import type  IUserContext  from '../interfaces/UserContext';
-import type  IUserDocument  from '../interfaces/UserDocument';
-import dotenv from 'dotenv';    
-import { signToken } from '../services/auth-service.js';
-dotenv.config();
-    
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { User } from '../models/User';
+import { JWT_SECRET } from '../env';
+import type { IUserContext } from '../interfaces/UserContext';
+import type { IUserDocument } from '../interfaces/UserDocument';
 
-// const signToken = (user: IUserDocument): string => {
-//     const JWT_SECRET = process.env.JWT_SECRET_KEY as string;
-//     return jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-// };
+const signToken = (user: IUserDocument): string => {
+    return jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+};
 
 const resolvers = {
     Query: {
