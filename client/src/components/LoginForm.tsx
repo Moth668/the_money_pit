@@ -1,73 +1,76 @@
-import { useState, useEffect } from 'react';
-import { Box, Fieldset, FormControl, Input, Button, Alert } from '@chakra-ui/react';
-import type { ChangeEvent, FormEvent } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useState, useEffect } from "react";
+import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react";
+import { Alert } from "@chakra-ui/react";
+import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
+import type { ChangeEvent, FormEvent } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [showAlert, setShowAlert] = useState(false);
+    const [userFormData, setUserFormData] = useState({ identifier: "", password: "" });
+    const [showAlert, setShowAlert] = useState(false);
+    const [login, { error }] = useMutation(LOGIN_USER);
 
-  const [login, { error }] = useMutation(LOGIN_USER);
+    useEffect(() => {
+        setShowAlert(!!error);
+    }, [error]);
 
-  useEffect(() => {
-    if (error) {
-      setShowAlert(true);
-    } else {
-      setShowAlert(false);
-    }
-  }, [error]);
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setUserFormData({ ...userFormData, [name]: value });
+    };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        try {
+            const { data } = await login({ variables: { ...userFormData } });
+            Auth.login(data.login.token);
+            handleModalClose();
+        } catch (e) {
+            console.error(e);
+        }
+        setUserFormData({ identifier: "", password: "" });
+    };
 
-  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    return (
+        <Box as="form" onSubmit={handleFormSubmit} width="100%" padding={4} boxShadow="md" borderRadius="lg" background="tomato" color="white">
+            <Stack gap={4} width="full">
+                {showAlert && (
+                    <Alert status="error">
+                        <Alert.Indicator />
+                        <Alert.Title>Something went wrong with your login credentials!</Alert.Title>
+                    </Alert>
+                )}
 
-    try {
-      const { data } = await login({
-        variables: { ...userFormData },
-      });
+                <Text fontSize="md" color="white">Please enter email or username to login</Text>
 
-      Auth.login(data.login.token);
-      handleModalClose();
-    } catch (e) {
-      console.error(e);
-    }
+// this is where user is told to enter and email or user name to login
+                <Input
+                    type="text"
+                    name="identifier"
+                    placeholder="Your email or username"
+                    onChange={handleInputChange}
+                    value={userFormData.identifier}
+                    leftIcon={<RiUserLine />}
+                />
 
-    // clear form values
-    setUserFormData({
-      email: '',
-      password: '',
-    });
-  };
+                <Input
+                    type="password"
+                    name="password"
+                    placeholder="Your password"
+                    onChange={handleInputChange}
+                    value={userFormData.password}
+                />
 
-  return (
-    <Box as="form" onSubmit={handleFormSubmit} w="100%" p={4} boxShadow="md" borderRadius="lg">
-      {showAlert && (
-        <Alert status="error" mb={4}>
-          Something went wrong with your login credentials!
-        </Alert>
-      )}
-
-      <Fieldset mb={4} isRequired>
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input type="email" name="email" placeholder="Your email" onChange={handleInputChange} value={userFormData.email} />
-      </Fieldset>
-
-      <Fieldset mb={4} isRequired>
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <Input type="password" name="password" placeholder="Your password" onChange={handleInputChange} value={userFormData.password} />
-      </Fieldset>
-
-      <Button colorScheme="blue" type="submit" isDisabled={!(userFormData.email && userFormData.password)} width="full">
-        Submit
-      </Button>
-    </Box>
-  );
+                <HStack justify="flex-end">
+                    <Button colorScheme="blue" type="submit" isDisabled={!(userFormData.identifier && userFormData.password)} rightIcon={<RiArrowRightLine />}>
+                        Submit
+                    </Button>
+                </HStack>
+            </Stack>
+        </Box>
+    );
 };
 
 export default LoginForm;

@@ -32,6 +32,13 @@
   },
   "homepage": "https://github.com/Moth668/the_money_pit#readme",
   "dependencies": {
-    "@chakra-ui/react": "^3.5.1"
+    "@apollo/client": "^3.12.8",
+    "@chakra-ui/react": "^3.5.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "framer-motion": "^12.0.6",
+    "next-themes": "^0.4.4",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.1.4"
   }
 }
