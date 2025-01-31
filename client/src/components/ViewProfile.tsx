@@ -13,7 +13,7 @@
 // button to update profile information
     // link to UpdateProfile.tsx
 
-    import React from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "graphql-tag";
 import { useNavigate } from "react-router-dom";

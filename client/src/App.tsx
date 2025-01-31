@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ViewProfile from "./components/ViewProfile";
 import UpdateProfile from "./components/UpdateProfile";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
