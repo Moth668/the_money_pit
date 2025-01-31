@@ -1,12 +1,20 @@
 import mongoose, { Schema, Document } from "mongoose";
+import bcrypt from "bcrypt";
 
 interface IUser extends Document {
+    username: string;
     email: string;
     password: string;
+    isCorrectPassword(password: string): Promise<boolean>;
 
 }
 
 const userSchema = new Schema<IUser>({
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
@@ -17,13 +25,14 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: true
     },
+},
     // set this to use virtual below
     {
         toJSON: {
             virtuals: true,
         },
     }
-});
+);
 
 // hash user password
 userSchema.pre<IUser>('save', async function (next) {
@@ -41,4 +50,5 @@ userSchema.methods.isCorrectPassword = async function (password: string): Promis
 };
 
 const User = mongoose.model<IUser>("User", userSchema);
+
 export default User;

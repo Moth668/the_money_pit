@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-// import User from '../models/User';
+import User from '../models/User';
 
 //need help with JWT Secret have to set it up
 const loginRouter = Router();
@@ -22,9 +22,9 @@ loginRouter.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id , email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
+        return res.json({ token });
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        return res.status(500).json({ message: 'Server error' });
     }
 });
 
