@@ -1,5 +1,5 @@
-import type { ButtonProps } from "@chakra-ui/react"
-import { IconButton as ChakraIconButton } from "@chakra-ui/react"
+import type { ButtonProps } from "@chakra-ui/react-new"
+import { IconButton as ChakraIconButton } from "@chakra-ui/react-new"
 import * as React from "react"
 import { LuX } from "react-icons/lu"
 
