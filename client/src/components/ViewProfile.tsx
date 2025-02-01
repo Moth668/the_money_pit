@@ -1,18 +1,3 @@
-// verify user is signed in
-
-// fetch profile data
-
-// display current profile information
-    // profile picture
-    // name
-    // username
-    // email
-    // physical address
-    // payment cards
-
-// button to update profile information
-    // link to UpdateProfile.tsx
-
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "graphql-tag";
