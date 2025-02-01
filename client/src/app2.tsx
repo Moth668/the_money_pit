@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Provider } from "@/components/ui/provider";
 import {
   ApolloClient,
@@ -8,13 +8,9 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-// import { Route } from 'react-router-dom';
-// import Home from "./pages/Home";
-// import MonthlyIncome from "./pages/MonthlyIncome";
-// import MonthlyExpenses from "./pages/MonthlyExpenses";
-// import CurrentSavings from "./pages/CurrentSavings";
-// import InvestmentBalance from "./pages/InvestmentBalance";
-// import AppNavbar from './components/Navbar'
+
+import Dashboard from "./pages/Dashboard";
+import './App.css'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -39,24 +35,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// Debug Component to Log Current Location
-// const DebugLocation: React.FC = () => {
-//   const location = useLocation();
-//   console.log('Current Path:', location.pathname);
-//   return null; // This component doesn't render anything on the UI
-// };
-
 // Layout Component for Navigation and Main Content
 const App: React.FC = () => {
+  console.log("Current Route:", location.pathname); // Debugging
   return (
     <ApolloProvider client={client}>
       <Provider>
         <h1>The Money Pit</h1>
-        {/* <AppNavbar /> */}
-        {/* <DebugLocation /> */}
-        <Outlet />
+        <Dashboard />
+        <Outlet /> {/* Ensure this is inside ApolloProvider but accessible */}
       </Provider>
-      </ApolloProvider>
+    </ApolloProvider>
   );
 };
 
