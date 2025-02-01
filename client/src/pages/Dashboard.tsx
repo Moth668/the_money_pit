@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-// import { useEffect } from "react"
 import { Drawer, Box, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-// import { Button }  from "@mui/material";
 import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
-// import { Settings }  from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 // import { auth } from "path-to-auth-module";  // adjust the import as per your file structure
 
@@ -22,13 +19,12 @@ const Dashboard: React.FC = () => {
 
   const menuItems: MenuItem[] = [
     { text: "Home", icon: <Home />, path: "/" },
-    { text: "Income", icon: <AttachMoney />, path: "./MonthlyIncome" },
-    { text: "Expenses", icon: <MoneyOff />, path: "./MonthlyExpenses" },
-    { text: "Savings", icon: <TrendingUp />, path: "./CurrentSavings" },
-    { text: "Investments", icon: <ListAlt />, path: "./InvestmentBalance" },
-    // ...(userRole === "admin" ? [{ text: "Settings", icon: <Settings />, path: "/settings" }] : []),
-    
+    { text: "Income", icon: <AttachMoney />, path: "/MonthlyIncome" },
+    { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
+    { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
+    { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
   ];
+
 
   // useEffect(() => {
   //   setIsLoggedIn(auth.isLoggedIn()); 
@@ -42,6 +38,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+      <IconButton
+        onClick={toggleDrawer}
+        sx={{
+          position: "absolute", // Make sure it stays on top
+          top: 10,
+          left: 10,
+          zIndex: 1300, // Ensure it's above the Drawer
+          backgroundColor: "white", // Optional: Make it visible if background is dark
+        }}
+      >
+        <MenuIcon />
+      </IconButton>
+
+      <h1>Dashboard Loaded</h1>
       <Drawer
         variant={isDrawerOpen ? "permanent" : "temporary"}  // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
@@ -84,11 +94,6 @@ const Dashboard: React.FC = () => {
           </List>
         </Box>
       </Drawer>
-
-      {/* Hamburger Menu Icon for Mobile */}
-      <IconButton onClick={toggleDrawer}>
-        <MenuIcon />
-      </IconButton>
     </>
   );
 };
