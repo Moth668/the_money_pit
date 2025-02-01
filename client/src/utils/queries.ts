@@ -1,64 +1,73 @@
-// utils/queries.ts
+import { gql } from '@apollo/client';
 
-import axios from "axios";
+export const GET_USER_DETAILS = gql`
+query GET_USER_DETAILS($id: ID!) {
+    user(id: $id) {
+        name
+        Income {
+            month
+            income
+        }
+        Expenses {
+            month
+            expense
+        }
+        Savings {
+            month
+            savings
+        }
+        Investments {
+            month
+            investment
+        }
+    }
+}`
+export const GET_CURRENT_SAVINGS = gql`
+query GET_CURRENT_SAVINGS($id: ID!) {
+    user(id: $id) {
+        Savings {
+            month
+            savings
+        }
+    }
+}`
 
-// Define the API endpoint
-const API_ENDPOINT = "http://localhost:5173/profile"; // Replace with your actual API endpoint
+export const GET_MONTHLY_INCOME = gql`
+query GET_MONTHLY_INCOME($id: ID!) {
+    user(id: $id) {
+        Income {
+            month
+            income
+        }
+    }
+}`
 
-/**
- * Fetch the profile data for the current user.
- * @returns A promise that resolves to the user's profile data.
- */
-export const fetchProfileData = async (): Promise<{
-  name: string;
-  email: string;
-  picture: string;
-  address: string;
-  cards: string[];
-  username: string;
-}> => {
-  try {
-    const response = await axios.get(`${API_ENDPOINT}/profile`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching profile data:", error);
-    throw error;
+export const GET_MONTHLY_EXPENSES = gql`
+query GET_MONTHLY_EXPENSES($id: ID!) {
+    user(id: $id) {
+        Expenses {
+            month
+            expense
+        }
+    }
+}`
+
+export const GET_INVESTMENT_BALANCE = gql`
+query GET_INVESTMENT_BALANCE($id: ID!) {
+    user(id: $id) {
+        Investments {
+            month
+            investment
+        }
+    }
+}`
+
+export const QUERY_ME = gql`
+   {
+    me {
+      _id
+      username
+      email
+    }
   }
-};
-
-/**
- * Fetch the user's transaction history or related data.
- * @returns A promise that resolves to the transaction history.
- */
-interface Transaction {
-  id: string;
-  amount: number;
-  date: string;
-  description: string;
-}
-
-export const fetchTransactionHistory = async (): Promise<Transaction[]> => {
-  try {
-    const response = await axios.get(`${API_ENDPOINT}/transactions`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching transaction history:", error);
-    throw error;
-  }
-};
-
-/**
- * Check the status of the user session.
- * @returns A promise that resolves to the session status.
- */
-export const fetchSessionStatus = async (): Promise<{
-  isLoggedIn: boolean;
-}> => {
-  try {
-    const response = await axios.get(`${API_ENDPOINT}/session`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching session status:", error);
-    throw error;
-  }
-};
+`;

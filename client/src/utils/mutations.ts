@@ -1,65 +1,105 @@
-// utils/mutations.ts
+import { gql } from '@apollo/client';
 
-import axios from 'axios';
+export const ADD_MONTHLY_INCOME = gql`
+mutation AddMonthlyIncome($id: ID!, $month: String!, $income: Float!, $date: String!) {
+    addIncome(id: $id, month: $month, income: $income, date: $date) {
+        month
+        income
+        date
+    }
+}
+`;
 
-// Define the API endpoint
-const API_ENDPOINT = 'http://localhost:3001/graphql'; // Replace with your actual API endpoint
+export const ADD_MONTHLY_EXPENSES = gql`
+mutation AddMonthlyExpenses($id: ID!, $month: String!, $expense: Float!, $date: String!) {
+    addExpense(id: $id, month: $month, expense: $expense, date: $date) {
+        month
+        expense
+        date
+    }
+}
+`;
 
-/**
- * Save profile data to the server.
- * @param profile - The profile data to save.
- * @returns A promise that resolves to the server response.
- */
-export const saveProfileData = async (profile: {
-  name: string;
-  email: string;
-  picture: string;
-  address: string;
-  cards: string[];
-  username: string;
-}): Promise<{ success: boolean; message: string }> => {
-  try {
-    const response = await axios.post(`${API_ENDPOINT}/profile`, profile);
-    return response.data;
-  } catch (error) {
-    console.error('Error saving profile:', error);
-    throw error;
+export const ADD_CURRENT_SAVINGS = gql`
+mutation AddCurrentSavings($id: ID!, $month: String!, $savings: Float!, $date: String!) {
+    addSavings(id: $id, month: $month, savings: $savings, date: $date) {
+        month
+        savings
+        date
+    }
+}
+`;
+
+export const ADD_CURRENT_INVESTMENTS = gql`
+mutation AddInvestmentBalance($id: ID!, $month: String!, $investment: Float!, $date: String!) {
+    addInvestment(id: $id, month: $month, investment: $investment, date: $date) {
+        month
+        investment
+        date
+    }
+}
+`;
+
+export const DELETE_MONTHLY_INCOME = gql`
+mutation DeleteIncome($id: ID!, $month: String!) {
+    deleteIncome(id: $id, month: $month) {
+        month
+        income
+        date
+    }
+}
+`;
+
+export const DELETE_MONTHLY_EXPENSES = gql`
+mutation DeleteExpense($id: ID!, $month: String!) {
+    deleteExpense(id: $id, month: $month) {
+        month
+        expense
+        date
+    }
+}
+`;
+
+export const DELETE_CURRENT_SAVINGS = gql`
+mutation DeleteSavings($id: ID!, $month: String!) {
+    deleteSavings(id: $id, month: $month) {
+        month
+        savings
+        date
+    }
+}
+`;
+
+export const DELETE_CURRENT_INVESTMENTS = gql`
+mutation DeleteInvestment($id: ID!, $month: String!) {
+    deleteInvestment(id: $id, month: $month) {
+        month
+        investment
+        date
+    }
+}
+`;
+
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
+    }
   }
-};
+`;
 
-/**
- * Upload a profile picture.
- * @param file - The picture file to upload.
- * @returns A promise that resolves to the uploaded file's URL or metadata.
- */
-export const uploadProfilePicture = async (file: File): Promise<string> => {
-  try {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const response = await axios.post(`${API_ENDPOINT}/upload`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-
-    return response.data.url; // Adjust based on your API response structure
-  } catch (error) {
-    console.error('Error uploading profile picture:', error);
-    throw error;
+export const ADD_USER = gql`
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
+    }
   }
-};
-
-/**
- * Log out the current user.
- * @returns A promise that resolves when the user is logged out.
- */
-export const logOutUser = async (): Promise<void> => {
-  try {
-    await axios.post(`${API_ENDPOINT}/logout`);
-    console.log('Logged out successfully');
-  } catch (error) {
-    console.error('Error logging out:', error);
-    throw error;
-  }
-};
+`;
