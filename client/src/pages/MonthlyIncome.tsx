@@ -1,7 +1,7 @@
 // MonthlyIncome.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Box, Heading, Spinner, Text } from '@chakra-ui/react';
+import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Title, Legend, LineElement, CategoryScale, LinearScale } from 'chart.js';
 import { GET_MONTHLY_INCOME } from '../utils/queries';

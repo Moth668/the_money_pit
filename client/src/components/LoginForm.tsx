@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react";
-import { Alert } from "@chakra-ui/react";
+import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react-new";
+import { Alert } from "@chakra-ui/react-new";
 import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
