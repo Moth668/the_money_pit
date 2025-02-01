@@ -1,7 +1,7 @@
 "use client"
 
-import type { IconButtonProps } from "@chakra-ui/react"
-import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react"
+import type { IconButtonProps } from "@chakra-ui/react-new"
+import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react-new"
 import { ThemeProvider, useTheme } from "next-themes"
 import type { ThemeProviderProps } from "next-themes"
 import * as React from "react"

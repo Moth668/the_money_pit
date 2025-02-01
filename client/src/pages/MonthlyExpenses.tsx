@@ -1,7 +1,7 @@
 // MonthlyExpenses.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Box, Heading, Spinner, Text } from '@chakra-ui/react';
+import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js/auto';
 import { GET_MONTHLY_EXPENSES } from '../utils/queries';

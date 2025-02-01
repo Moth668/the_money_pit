@@ -6,7 +6,7 @@ import {
   Spacer,
   Button,
   HStack,
-  IconButton,
+  // IconButton,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -19,8 +19,8 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-} from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+} from "@chakra-ui/react-legacy";
+// import { HamburgerIcon } from "@chakra-ui/icons";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import Auth from "../utils/auth";

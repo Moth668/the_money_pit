@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.12.8",
     "@chakra-ui/layout": "^2.3.1",
-    "@chakra-ui/react": "^3.5.1",
+    "@chakra-ui/react-legacy": "npm:@chakra-ui/react@^2.10.0",
+    "@chakra-ui/react-new": "npm:@chakra-ui/react@^3.5.1",
     "@emotion/react": "^11.14.0",
     "@mui/icons-material": "^6.4.2",
     "@mui/material": "^6.4.2",
