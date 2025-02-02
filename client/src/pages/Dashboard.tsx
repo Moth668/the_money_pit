@@ -1,15 +1,37 @@
 import React, { useState } from "react";
-import { Drawer, Box, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
+import {
+  Drawer,
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
+import {
+  Home,
+  AttachMoney,
+  MoneyOff,
+  TrendingUp,
+  ListAlt,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
-// import { auth } from "path-to-auth-module";  // adjust the import as per your file structure
-
+// import { Heading } from "@chakra-ui/react";
 
 interface MenuItem {
   text: string;
   icon: React.ReactNode;
   path: string;
 }
+
+import { Avatar } from "@/components/ui/avatar"
+
+const Demo = () => {
+  return <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
+}
+
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
@@ -23,11 +45,11 @@ const Dashboard: React.FC = () => {
     { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
     { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
     { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
+    { text: "Profile", icon: <Demo />, path: "/ViewProfileCard" },
   ];
 
-
   // useEffect(() => {
-  //   setIsLoggedIn(auth.isLoggedIn()); 
+  //   setIsLoggedIn(auth.isLoggedIn());
   // });
 
   const toggleDrawer = (): void => {
@@ -38,6 +60,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+    {/* <Heading>The Money Pit
+    <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
+    </Heading> */}
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -53,7 +78,7 @@ const Dashboard: React.FC = () => {
 
       <h1>Dashboard Loaded</h1>
       <Drawer
-        variant={isDrawerOpen ? "permanent" : "temporary"}  // "permanent" on large screens, "temporary" on small screens
+        variant={isDrawerOpen ? "permanent" : "temporary"} // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
         onClose={toggleDrawer}
         sx={{
@@ -67,8 +92,12 @@ const Dashboard: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
-              <img src="./src/assets/image.png" alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
-              <h1>The Money Pit</h1>
+              <img
+                src="./src/assets/image.png"
+                alt="Money Pit Favicon"
+                style={{ width: "80%", height: "auto" }}
+              />
+              {/* <h1>The Money Pit</h1> */}
             </Box>
             {menuItems.map((item) => (
               <ListItem
@@ -79,9 +108,15 @@ const Dashboard: React.FC = () => {
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
-                  backgroundColor: location.pathname === item.path ? "primary.main" : "transparent",
+                  backgroundColor:
+                    location.pathname === item.path
+                      ? "primary.main"
+                      : "white",
                   "&:hover": {
-                    backgroundColor: location.pathname === item.path ? "primary.dark" : "action.hover",
+                    backgroundColor:
+                      location.pathname === item.path
+                        ? "primary.dark"
+                        : "action.hover",
                   },
                 }}
               >

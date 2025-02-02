@@ -17,9 +17,9 @@
     "render-build": "npm install && npm run build"
   },
   "devDependencies": {
-
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.7",
+    "vite-tsconfig-paths": "^5.1.4",
     "wait-on": "^7.2.0"
   },
   "repository": {
@@ -31,6 +31,13 @@
   "bugs": {
     "url": "https://github.com/Moth668/the_money_pit/issues"
   },
-  "homepage": "https://github.com/Moth668/the_money_pit#readme"
-
+  "homepage": "https://github.com/Moth668/the_money_pit#readme",
+  "dependencies": {
+    "@chakra-ui/react": "^3.6.0",
+    "@emotion/react": "^11.14.0",
+    "apollo-server-express": "^3.13.0",
+    "next-themes": "^0.4.4",
+    "react-icons": "^5.4.0",
+    "vite": "^6.0.11"
+  }
 }
