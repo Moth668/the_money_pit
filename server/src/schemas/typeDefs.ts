@@ -37,6 +37,7 @@ export const typeDefs = gql`
 
   type Expense {
     month: String
+    category: String
     expense: Float
   }
 

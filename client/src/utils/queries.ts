@@ -47,14 +47,15 @@ query($id: ID) {
 `;
 
 export const GET_MONTHLY_EXPENSES = gql`
-query ($id: ID!) {
+  query ($id: ID!) {
     user(id: $id) {
-        monthlyExpenses {
-            month
-            expense
-        }
+      monthlyExpenses {
+        month
+        category
+        expense
+      }
     }
-}
+  }
 `;
 
 export const GET_INVESTMENT_BALANCE = gql`

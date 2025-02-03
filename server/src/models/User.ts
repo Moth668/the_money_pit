@@ -9,6 +9,7 @@ const IncomeSchema = new Schema({
 
 const ExpenseSchema = new Schema({
     month: { type: String, required: true },
+    category: { type: String, required: true },
     expense: { type: Number, required: true },
 });
 
