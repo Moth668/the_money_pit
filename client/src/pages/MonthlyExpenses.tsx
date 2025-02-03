@@ -9,13 +9,24 @@ import { GET_MONTHLY_EXPENSES } from '../utils/queries';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const MonthlyExpenses: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_MONTHLY_EXPENSES);
+  const dummyUserId = "000000000000000000000001";
+  const { data, loading, error } = useQuery(GET_MONTHLY_EXPENSES, {
+    variables: { id: dummyUserId },
+  });
+
+  console.log("DATA: ", data);
 
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
-  const categories = data.monthlyExpenses.map((expense: any) => expense.category);
-  const amounts = data.monthlyExpenses.map((expense: any) => expense.amount);
+  // Check the correct field returned by the server
+  if (!data || !data.user || !data.user.monthlyExpenses) {
+    return <Text>No income data available.</Text>;
+  }
+
+  const monthlyExpenses = data.user.monthlyExpenses;
+  const categories = monthlyExpenses.map((expense: any) => expense.month);
+  const amounts = monthlyExpenses.map((expense: any) => expense.expense);
 
   const chartData = {
     labels: categories,

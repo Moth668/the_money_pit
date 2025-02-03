@@ -21,46 +21,52 @@ query GET_USER_DETAILS($id: ID!) {
             investment
         }
     }
-}`
+}
+`;
+
 export const GET_CURRENT_SAVINGS = gql`
-query GET_CURRENT_SAVINGS($id: ID!) {
+query ($id: ID!) {
     user(id: $id) {
-        Savings {
+        currentSavings {
             month
             savings
         }
     }
-}`
+}
+`;
 
 export const GET_MONTHLY_INCOME = gql`
-query GET_MONTHLY_INCOME($id: ID!) {
-    user(id: $id) {
-        Income {
-            month
-            income
-        }
+query($id: ID) {
+  user(id: $id) {
+    monthlyIncome {
+      income
+      month
     }
-}`
+  }
+}
+`;
 
 export const GET_MONTHLY_EXPENSES = gql`
-query GET_MONTHLY_EXPENSES($id: ID!) {
+query ($id: ID!) {
     user(id: $id) {
-        Expenses {
+        monthlyExpenses {
             month
             expense
         }
     }
-}`
+}
+`;
 
 export const GET_INVESTMENT_BALANCE = gql`
-query GET_INVESTMENT_BALANCE($id: ID!) {
-    user(id: $id) {
-        Investments {
-            month
-            investment
-        }
+query($id: ID) {
+  user(id: $id) {
+    currentInvestments {
+      month
+      investment
     }
-}`
+  }
+}
+`;
 
 export const QUERY_ME = gql`
    {
