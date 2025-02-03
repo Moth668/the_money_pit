@@ -4,7 +4,6 @@ import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } fr
 import { useLocation, Link } from "react-router-dom";
 // import { auth } from "path-to-auth-module";  // adjust the import as per your file structure
 
-
 interface MenuItem {
   text: string;
   icon: React.ReactNode;

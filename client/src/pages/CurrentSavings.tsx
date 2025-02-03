@@ -21,11 +21,6 @@ const CurrentSavings: React.FC = () => {
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
-  // interface Savings {
-  //   category: string;
-  //   amount: number;
-  // }
-
   interface Savings {
     month: string;
     savings: number;
