@@ -1,24 +1,9 @@
-import React, { useState } from "react";
-import {
-  Drawer,
-  Box,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Tooltip,
-  IconButton,
-} from "@mui/material";
-import {
-  Home,
-  AttachMoney,
-  MoneyOff,
-  TrendingUp,
-  ListAlt,
-  Menu as MenuIcon,
-} from "@mui/icons-material";
+
+import React, { useState, useEffect } from "react";
+import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
+import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon, Logout } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
-// import { Heading } from "@chakra-ui/react";
+import auth from "../utils/auth";  // adjust the import as per your file structure
 
 interface MenuItem {
   text: string;
@@ -35,9 +20,9 @@ const Demo = () => {
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  // const userRole = auth.getUserRole();  // Get the user role (assuming this function exists)
+  // const userRole = auth.;  // Get the user role (assuming this function exists)
 
   const menuItems: MenuItem[] = [
     { text: "Home", icon: <Home />, path: "/" },
@@ -48,9 +33,9 @@ const Dashboard: React.FC = () => {
     { text: "Profile", icon: <Demo />, path: "/ViewProfileCard" },
   ];
 
-  // useEffect(() => {
-  //   setIsLoggedIn(auth.isLoggedIn());
-  // });
+  useEffect(() => {
+    setIsLoggedIn(auth.loggedIn()); 
+  });
 
   const toggleDrawer = (): void => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -76,7 +61,6 @@ const Dashboard: React.FC = () => {
         <MenuIcon />
       </IconButton>
 
-      <h1>Dashboard Loaded</h1>
       <Drawer
         variant={isDrawerOpen ? "permanent" : "temporary"} // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
@@ -92,12 +76,7 @@ const Dashboard: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
-              <img
-                src="./src/assets/image.png"
-                alt="Money Pit Favicon"
-                style={{ width: "80%", height: "auto" }}
-              />
-              {/* <h1>The Money Pit</h1> */}
+              <img src="./src/assets/image.png" alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
             </Box>
             {menuItems.map((item) => (
               <ListItem
@@ -128,9 +107,45 @@ const Dashboard: React.FC = () => {
             ))}
           </List>
         </Box>
+        <Box>
+          {(isLoggedIn)? (
+            <> 
+            <Button onClick={() => auth.logout()} variant="contained"
+            // sx={{
+            //   position: "left", // Make sure it stays on top
+            //   top: 10,
+            //   left: 10,
+            //   zIndex: 1300, // Ensure it's above the Drawer
+            //   color: "white",
+            //   padding: 5 // Optional: Make it visible if background is dark
+            // }}
+          >Logout</Button>
+          <Tooltip title="Logout" placement="left">
+          </Tooltip>
+          </>
+          ):(
+            <>
+            <Button component={Link} to="/LoginForm" variant="contained"
+          // sx={{
+          //   position: "left", // Make sure it stays on top
+          //   top: 10,
+          //   left: 10,
+          //   zIndex: 1300, // Ensure it's above the Drawer
+          //   color: "white", // Optional: Make it visible if background is dark
+          //   padding: 5
+          // }}
+          >Login</Button>
+          <Tooltip title="Login" placement="left">
+          </Tooltip>
+            </>
+          )}
+
+          
+
+        </Box>
       </Drawer>
     </>
   );
 };
-
 export default Dashboard;
+

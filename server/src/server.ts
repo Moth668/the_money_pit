@@ -3,6 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { expressMiddleware } from '@apollo/server/express4';
 import path  from 'node:path';
+import cors from 'cors';
 // import { loginRouther } from './routes/index.js';
 // import { protectedRouter } from './routes/protected';
 
@@ -25,6 +26,7 @@ const startApolloServer = async () => {
   const PORT = process.env.PORT || 3001;
   const app = express();
 
+  app.use(cors());
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
