@@ -83,12 +83,14 @@ mutation DeleteInvestment($id: ID!, $month: String!) {
 export const LOGIN_USER = gql`
   mutation Login($login: String!, $password: String!) {
   login(login: $login, password: $password) {
-    user {
-      email
-      username
+      token
+      user {
+        username
+        email
+        id
+      }
     }
   }
-}
 `;
 
 export const ADD_USER = gql`
