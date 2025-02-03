@@ -50,7 +50,6 @@ const Dashboard: React.FC = () => {
         <MenuIcon />
       </IconButton>
 
-      <h1>Dashboard Loaded</h1>
       <Drawer
         variant={isDrawerOpen ? "permanent" : "temporary"}  // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
@@ -67,7 +66,6 @@ const Dashboard: React.FC = () => {
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
               <img src="./src/assets/image.png" alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
-              <h1>The Money Pit</h1>
             </Box>
             {menuItems.map((item) => (
               <ListItem
