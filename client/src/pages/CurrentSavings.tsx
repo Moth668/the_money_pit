@@ -13,6 +13,8 @@ Chart.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 const CurrentSavings: React.FC = () => {
   const { data, loading, error } = useQuery(GET_CURRENT_SAVINGS);
 
+console.log(data);
+
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
