@@ -1,22 +1,25 @@
 import User from "../models/User.js"; // Mongoose model
 import { GraphQLError } from "graphql";
+import type IUserDocument from '../interfaces/UserDocument';
+import { signToken } from '../services/auth-service.js';
+import { AuthenticationError } from 'apollo-server-express';
 
 export const resolvers = {
-    Query: {
-        async user(_: any, args: { userId?: string }) {
-            // Use args.userId instead of args.id
-            if (!args.userId) {
-              // Optionally, return a default user or throw an error
-              return await User.findOne({ _id: "000000000000000000000001" });
-            }
-            return await User.findById(args.userId);
-          },
+  Query: {
+    async user(_: any, args: { userId?: string }) {
+      // Use args.userId instead of args.id
+      if (!args.userId) {
+        // Optionally, return a default user or throw an error
+        return await User.findOne({ _id: "000000000000000000000001" });
+      }
+      return await User.findById(args.userId);
+    },
 
-        async users() {
-          return await User.find();
-        },
-      },
-  
+    async users() {
+      return await User.find();
+    },
+  },
+
   Mutation: {
     async addIncome(_: any, { id, month, income }: { id: string; month: string; income: number }) {
       const user = await User.findById(id);
@@ -80,6 +83,36 @@ export const resolvers = {
       user.currentInvestments = user.currentInvestments.filter((investment) => investment.month !== month);
       await user.save();
       return user;
+    },
+    addUser: async (_parent: any, { username, email, password }: { username: string; email: string; password: string }): Promise<{ token: string; user: IUserDocument }> => {
+      // const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({ username, email, password });
+      const token = signToken(user.username, user.email, user._id);
+      return { token, user };
+    },
+    login: async (_parent: any, { login, password }: { login: string; password: string }): Promise<{ token: string; user: IUserDocument }> => {
+      const lookupField = login.includes('@') ? 'email' : 'username';
+      const user = await User.findOne({ [lookupField]: login });
+
+      console.log("USER", user);
+
+      if (!user) {
+        throw new AuthenticationError('Invalid credentials: user not found');
+      }
+
+      const validPassword = await user.isCorrectPassword(password);
+      if (!validPassword) {
+        console.log("Invalid Password")
+        throw new AuthenticationError('Invalid credentials: password incorrect');
+      }
+
+      // if (!user || !(await user.isCorrectPassword(password))) {
+      //     throw new AuthenticationError('Invalid credentials');
+      // }
+      const token = signToken(user.username, user.email, user._id);
+      console.log("Token from signToken:", token);
+      
+      return { token, user };
     },
   },
 };
