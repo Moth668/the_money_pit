@@ -8,32 +8,74 @@ mongoose.connect("mongodb://127.0.0.1:27017/moneyPitDB", {})
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Use a valid fixed ObjectId (24-character hex string)
+// Use a fixed ObjectId (24-character hex string) for the dummy user.
 const dummyObjectId = new mongoose.Types.ObjectId("000000000000000000000001");
+
+// Define 12 months for one year.
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+// Generate monthlyIncome: starting at 5000, increasing by 50 each month.
+const monthlyIncome = months.map((month) => ({
+  month,
+  income: Math.floor(100 + Math.random() * 5000),
+}));
+
+// Define several expense categories.
+const expenseCategories = [
+  "Food",
+  "Rent",
+  "Utilities",
+  "Transportation",
+  "Entertainment",
+  "Healthcare",
+  "Education"
+];
+
+// Generate monthlyExpenses: for each month, create one expense record per category with a random amount.
+let monthlyExpenses: any = [];
+months.forEach((month) => {
+  expenseCategories.forEach((category) => {
+    const expense = Math.floor(100 + Math.random() * 1400);
+    monthlyExpenses.push({ month, category, expense });
+  });
+});
+
+// Generate currentSavings: starting at 1500, increasing by 30 each month.
+const currentSavings = months.map((month, index) => ({
+  month,
+  savings: 1500 + index * 30,
+}));
+
+// Generate currentInvestments: starting at 3000, increasing by 40 each month.
+const currentInvestments = months.map((month, index) => ({
+  month,
+  investment: 3000 + index * 40,
+}));
 
 const seedUsers = [
   {
-    _id: dummyObjectId, // Fixed valid ObjectId
+    _id: dummyObjectId,
     name: "John Doe",
     username: "johndoe",
     email: "johndoe@example.com",
-    password: "securepassword", // In production, hash the password
-    monthlyIncome: [
-      { month: "January", income: 5000 },
-      { month: "February", income: 5200 },
-    ],
-    monthlyExpenses: [
-      { month: "January", expense: 2000 },
-      { month: "February", expense: 2100 },
-    ],
-    currentSavings: [
-      { month: "January", savings: 1500 },
-      { month: "February", savings: 1600 },
-    ],
-    currentInvestments: [
-      { month: "January", investment: 3000 },
-      { month: "February", investment: 3200 },
-    ],
+    password: "securepassword", // In production, this should be hashed.
+    monthlyIncome,
+    monthlyExpenses,
+    currentSavings,
+    currentInvestments,
   },
 ];
 
