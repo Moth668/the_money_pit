@@ -1,5 +1,8 @@
 import User from "../models/User.js"; // Mongoose model
 import { GraphQLError } from "graphql";
+import type  IUserDocument  from '../interfaces/UserDocument'; 
+import { signToken } from '../services/auth-service.js';
+import { AuthenticationError } from 'apollo-server-express';
 
 export const resolvers = {
     Query: {
@@ -81,6 +84,32 @@ export const resolvers = {
       await user.save();
       return user;
     },
+    addUser: async (_parent: any, { username, email, password }: { username: string; email: string; password: string }): Promise<{ token: string; user: IUserDocument }> => {
+      // const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({ username, email, password });
+      const token = signToken(user.username, user.email, user._id);
+      return { token, user };
+  },
+  login: async (_parent: any, { login, password }: { login: string; password: string }): Promise<{ token: string; user: IUserDocument }> => {
+      const lookupField = login.includes('@') ? 'email' : 'username';  
+      const user = await User.findOne({ [lookupField]: login });
+      
+      console.log("USER", user);
+      if (!user) {
+          throw new AuthenticationError('Invalid credentials: user not found');
+      }
+
+      const validPassword = await user.isCorrectPassword(password);
+      if (!validPassword) {
+          throw new AuthenticationError('Invalid credentials: password incorrect');
+      }
+
+      // if (!user || !(await user.isCorrectPassword(password))) {
+      //     throw new AuthenticationError('Invalid credentials');
+      // }
+      const token = signToken(user.username, user.email, user._id);
+      return { token, user };
+  },
   },
 };
 

@@ -76,4 +76,5 @@ export const QUERY_ME = gql`
       username
       email
     }
+    }
 `;

@@ -7,8 +7,8 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
-    const [userFormData, setUserFormData] = useState({ identifier: "", password: "" });
+const LoginForm:React.FC = () => {
+    const [userFormData, setUserFormData] = useState({ login: "", password: "" });
     const [showAlert, setShowAlert] = useState(false);
     const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -25,30 +25,32 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         event.preventDefault();
         try {
             const { data } = await login({ variables: { ...userFormData } });
+            console.log(data);
             Auth.login(data.login.token);
-            handleModalClose();
         } catch (e) {
             console.error(e);
         }
-        setUserFormData({ identifier: "", password: "" });
+        setUserFormData({ login: "", password: "" });
     };
 
     return (
         <Box as="form" onSubmit={handleFormSubmit} width="100%" padding={4} boxShadow="md" borderRadius="lg" background="tomato" color="white">
             <Stack gap={4} width="full">
                 {showAlert && (
-                    <Alert status="error">
-                        <Alert.Indicator />
-                        <Alert.Title>Something went wrong with your login credentials!</Alert.Title>
-                    </Alert>
+                    // <Alert status="error">
+                    //     <Alert.Indicator />
+                    //     <Alert.Title>Something went wrong with your login credentials!</Alert.Title>
+                    // </Alert>
+                    <div>
+                        <p>Something went wrong with your login credentials!</p>
+                    </div>
                 )}
 
                 <Text fontSize="md" color="white">Please enter email or username to login</Text>
 
-// this is where user is told to enter and email or user name to login
                 <Input
                     type="text"
-                    name="identifier"
+                    name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
                     value={userFormData.identifier}

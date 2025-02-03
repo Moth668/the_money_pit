@@ -5,6 +5,12 @@ export const typeDefs = gql`
     user(id: ID): User
     users: [User]
   }
+    
+  type Auth {
+    token: ID!
+    user: User
+  }
+
 
   type Mutation {
     addIncome(id: ID!, month: String!, income: Float!): User
@@ -16,6 +22,9 @@ export const typeDefs = gql`
     deleteExpense(id: ID!, month: String!): User
     deleteSavings(id: ID!, month: String!): User
     deleteInvestment(id: ID!, month: String!): User
+
+    login(login: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
   }
 
   type User {
