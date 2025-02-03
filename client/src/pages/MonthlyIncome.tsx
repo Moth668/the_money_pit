@@ -1,4 +1,3 @@
-// MonthlyIncome.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';
@@ -9,14 +8,25 @@ import { GET_MONTHLY_INCOME } from '../utils/queries';
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
 
 const MonthlyIncome: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_MONTHLY_INCOME);
+  const dummyUserId = "000000000000000000000001";
+  const { data, loading, error } = useQuery(GET_MONTHLY_INCOME, {
+    variables: { id: dummyUserId },
+  });
+
+  console.log("DATA: ", data);
 
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
-  const monthlyIncomeData = data.monthlyIncome; // assuming it has a list of months and amounts
+  // Check the correct field returned by the server
+  if (!data || !data.user || !data.user.monthlyIncome) {
+    return <Text>No income data available.</Text>;
+  }
+
+  // Use the correct field name: monthlyIncome (all lowercase)
+  const monthlyIncomeData = data.user.monthlyIncome;
   const months = monthlyIncomeData.map((income: any) => income.month);
-  const amounts = monthlyIncomeData.map((income: any) => income.amount);
+  const amounts = monthlyIncomeData.map((income: any) => income.income);
 
   const chartData = {
     labels: months,

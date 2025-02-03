@@ -9,21 +9,31 @@ import { GET_INVESTMENT_BALANCE } from '../utils/queries';
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
 
 const InvestmentBalance: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_INVESTMENT_BALANCE);
+  const dummyUserId = "000000000000000000000001"; // Make sure this matches the seeded dummy user
+  const { data, loading, error } = useQuery(GET_INVESTMENT_BALANCE, {
+    variables: { id: dummyUserId },
+  });
+
+  console.log("DATA: ", data);
 
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
-  const investmentData = data.investmentBalance; // assuming it has a list of months and balances
-  const months = investmentData.map((investment: any) => investment.month);
-  const balances = investmentData.map((investment: any) => investment.balance);
+  // Defensive check: ensure that data.user and data.user.currentInvestments exist
+  if (!data || !data.user || !data.user.currentInvestments) {
+    return <Text>No investment data available.</Text>;
+  }
+
+  const investmentData = data.user.currentInvestments;
+  const months = investmentData.map((item: any) => item.month);
+  const investments = investmentData.map((item: any) => item.investment);
 
   const chartData = {
     labels: months,
     datasets: [
       {
         label: 'Investment Balance',
-        data: balances,
+        data: investments,
         borderColor: 'rgba(153,102,255,1)',
         backgroundColor: 'rgba(153,102,255,0.2)',
         fill: true,

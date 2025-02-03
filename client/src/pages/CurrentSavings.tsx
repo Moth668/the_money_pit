@@ -11,20 +11,26 @@ import { GET_CURRENT_SAVINGS } from '../utils/queries';
 Chart.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
 const CurrentSavings: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_CURRENT_SAVINGS);
+  const dummyUserId = "000000000000000000000001";
+  const { data, loading, error } = useQuery(GET_CURRENT_SAVINGS, {
+    variables: { id: dummyUserId },
+  });
+
+  console.log("DATA: ", data);
 
 console.log(data);
+
 
   if (loading) return <Spinner size="xl" />;
   if (error) return <Text color="red.500">Error: {error.message}</Text>;
 
   interface Savings {
-    month: string;
-    income: number;
+    category: string;
+    amount: number;
   }
-  // Data for chart
-  const months  = data.currentSavings.map((savings: Savings) => savings.month);
-  const saving = data.currentSavings.map((savings: Savings) => savings.income);
+
+  const savingsCategories = data.currentSavings.map((savings: Savings) => savings.category);
+  const amounts = data.currentSavings.map((savings: Savings) => savings.amount);
 
   const chartData = {
     labels: months,
