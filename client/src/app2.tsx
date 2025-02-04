@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Provider } from "@/components/ui/provider";
+import { Provider } from "./components/ui/provider";
 import {
   ApolloClient,
   InMemoryCache,
