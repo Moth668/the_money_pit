@@ -74,7 +74,7 @@ const LoginForm:React.FC = () => {
                     name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
-                    value={userFormData.login}
+                    value={userFormData.identifier}
                 />
                 </Group>
                 <Input
