@@ -30,7 +30,7 @@ const ViewProfile: React.FC = () => {
   if (loginLoading || profileLoading) return <p>Loading...</p>;
 
   if (!loginData?.isLoggedIn) {
-    navigate("/login");
+    navigate("/LoginForm");
     return null;
   }
 
