@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon, Logout } from "@mui/icons-material";
+import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";  // adjust the import as per your file structure
 
@@ -106,8 +106,9 @@ const Dashboard: React.FC = () => {
             // }}
           >Logout</Button>
           <Tooltip title="Logout" placement="left">
+            <></>
           </Tooltip>
-          </>
+            </>
           ):(
             <>
             <Button component={Link} to="/LoginForm" variant="contained"
@@ -121,6 +122,7 @@ const Dashboard: React.FC = () => {
           // }}
           >Login</Button>
           <Tooltip title="Login" placement="left">
+            <></>
           </Tooltip>
             </>
           )}
