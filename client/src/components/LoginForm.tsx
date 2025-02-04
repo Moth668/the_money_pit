@@ -86,7 +86,7 @@ const LoginForm:React.FC = () => {
                 />
 
                 <HStack justify="flex-end">
-                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.login && userFormData.password)} >
+                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.login && !userFormData.password)} >
                         Submit
                         {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
