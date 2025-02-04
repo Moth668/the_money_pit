@@ -45,11 +45,11 @@ const LoginForm: React.FC = () => {
             color="black"
         >
             <Stack gap={4} width="full">
-                {showAlert && (
+                {/* {showAlert && (
                     <Alert status="error">
                         <Text>Something went wrong with your login credentials!</Text>
                     </Alert>
-                )}
+                )} */}
 
                 <Text fontSize="md">Please enter email or username to login</Text>
 
