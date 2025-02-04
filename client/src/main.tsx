@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MonthlyIncome from "./pages/MonthlyIncome";
 import MonthlyExpenses from "./pages/MonthlyExpenses";
 import CurrentSavings from "./pages/CurrentSavings";
@@ -13,7 +13,7 @@ console.log("Main.tsx is executing...");
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       { index: true, element: <Home /> },
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 
 const rootElement = document.getElementById("root");
 if (rootElement) {

@@ -27,7 +27,8 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  background: rgba(211, 211, 211, 0.5);
 }
 
 h1 {

@@ -1,16 +1,22 @@
+
 import React, { useState, useEffect } from "react";
 import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
 import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";  // adjust the import as per your file structure
 
-
-
 interface MenuItem {
   text: string;
   icon: React.ReactNode;
   path: string;
 }
+
+import { Avatar } from "@/components/ui/avatar"
+
+const Demo = () => {
+  return <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
+}
+
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
@@ -24,8 +30,8 @@ const Dashboard: React.FC = () => {
     { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
     { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
     { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
+    { text: "Profile", icon: <Demo />, path: "/ViewProfileCard" },
   ];
-
 
   useEffect(() => {
     setIsLoggedIn(auth.loggedIn()); 
@@ -39,6 +45,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+    {/* <Heading>The Money Pit
+    <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
+    </Heading> */}
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -53,7 +62,7 @@ const Dashboard: React.FC = () => {
       </IconButton>
 
       <Drawer
-        variant={isDrawerOpen ? "permanent" : "temporary"}  // "permanent" on large screens, "temporary" on small screens
+        variant={isDrawerOpen ? "permanent" : "temporary"} // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
         onClose={toggleDrawer}
         sx={{
@@ -78,9 +87,15 @@ const Dashboard: React.FC = () => {
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
-                  backgroundColor: location.pathname === item.path ? "primary.main" : "transparent",
+                  backgroundColor:
+                    location.pathname === item.path
+                      ? "primary.main"
+                      : "white",
                   "&:hover": {
-                    backgroundColor: location.pathname === item.path ? "primary.dark" : "action.hover",
+                    backgroundColor:
+                      location.pathname === item.path
+                        ? "primary.dark"
+                        : "action.hover",
                   },
                 }}
               >
