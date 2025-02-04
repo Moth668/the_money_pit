@@ -3,7 +3,7 @@ import reactLogo from "../assets/react.svg";
 // import viteLogo from '/vite.svg'
 import "../App.css";
 // import { Avatar, AvatarGroup } from "@/components/ui/avatar";
-
+import { Avatar, AvatarBadge } from "@chakra-ui/react-legacy";
 
 
 function Home() {
@@ -19,6 +19,11 @@ function Home() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      <Avatar
+        src="client/src/assets/Elon_Musk.jpg">
+        <AvatarBadge width="1.3em" bg="teal.500">
+        </AvatarBadge>
+      </Avatar>
       <h1>The Money Pit 💰</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
