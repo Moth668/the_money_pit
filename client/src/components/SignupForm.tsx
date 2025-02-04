@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react-new";
+import { InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
 import { Alert } from "@chakra-ui/react-new";
 import { RiArrowRightLine, RiMailLine, RiUserLine, RiLockLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
@@ -7,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
+const SignUpForm:React.FC = () => {
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
@@ -30,7 +31,6 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
     try {
       const { data } = await addUser({ variables: { ...userFormData } });
       Auth.login(data.addUser.token);
-      handleModalClose();
     } catch (e) {
       console.error(e);
     }
@@ -38,46 +38,58 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   };
 
   return (
-    <Box as="form" onSubmit={handleFormSubmit} width="100%" padding={4} boxShadow="md" borderRadius="lg" background="tomato" color="white">
+    <Box as="form" 
+    onSubmit={handleFormSubmit} 
+    width="100%" 
+    padding={4} 
+    boxShadow="md" 
+    borderRadius="lg" 
+    background="black" 
+    color="pink">
       <Stack gap={4} width="full">
-        {showAlert && (
-          <Alert status="error">
-            <Alert.Indicator />
-            <Alert.Title>Something went wrong with your signup!</Alert.Title>
-          </Alert>
-        )}
+        {/* {showAlert && (
+           <Alert status="error">
+             <Alert.Indicator />
+           </Alert>
+         )} */}
 
         <Text fontSize="md" color="white">Create an account</Text>
         
-        <Input
-          type="text"
-          name="username"
-          placeholder="Your username"
-          onChange={handleInputChange}
-          value={userFormData.username}
-          leftIcon={<RiUserLine />}
-        />
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" children={<RiUserLine />} />
+          <Input
+            type="text"
+            name="username"
+            placeholder="Your username"
+            onChange={handleInputChange}
+            value={userFormData.username}
+          />
+        </InputGroup>
 
-        <Input
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          onChange={handleInputChange}
-          value={userFormData.email}
-          leftIcon={<RiMailLine />}
-        />
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" children={<RiMailLine />} />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            onChange={handleInputChange}
+            value={userFormData.email}
+          />
+        </InputGroup>
 
-        <Input
-          type="password"
-          name="password"
-          placeholder="Your password"
-          onChange={handleInputChange}
-          value={userFormData.password}
-          leftIcon={<RiLockLine />}
-        />
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" children={<RiLockLine />} />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Your password"
+            onChange={handleInputChange}
+            value={userFormData.password}
+          />
+        </InputGroup>
 
         <HStack justify="flex-end">
-          <Button colorScheme="blue" type="submit" isDisabled={!(userFormData.username && userFormData.email && userFormData.password)} rightIcon={<RiArrowRightLine />}>
+          <Button colorScheme="blue" type="submit" disabled={!(userFormData.username && userFormData.email && userFormData.password)} rightIcon={<RiArrowRightLine />}>
             Submit
           </Button>
         </HStack>
@@ -86,4 +98,4 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;
