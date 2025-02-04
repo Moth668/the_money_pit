@@ -8,6 +8,7 @@ import InvestmentBalance from "./pages/InvestmentBalance";
 import Home from "./pages/Home"
 import App from './app2'
 import LoginForm from "./components/LoginForm";
+import ViewProfile from "./components/ViewProfile";
 
 console.log("Main.tsx is executing...");
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: 'CurrentSavings', element: <CurrentSavings /> },
       { path: 'InvestmentBalance', element: <InvestmentBalance /> },
       { path: 'LoginForm', element: <LoginForm /> },
+      { path: "ViewProfileCard", element: <ViewProfile /> },
     ],
   },
 ]);
