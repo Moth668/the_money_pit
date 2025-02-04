@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react-new";
-import { Alert } from "@chakra-ui/react-new";
-import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
+import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text } from "@chakra-ui/react-new";
+// import { Alert } from "@chakra-ui/react-new";
+import { RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+function Form(props:any) {
+	return (
+		<Box as="form" onSubmit={props.onSubmit} {...props}>
+			{props.children}
+		</Box>
+	)
+}
+
 const LoginForm:React.FC = () => {
-    const [userFormData, setUserFormData] = useState({ login: "", password: "" });
+    const [userFormData, setUserFormData] = useState({ login: "", password: "", identifier: ""});
     const [showAlert, setShowAlert] = useState(false);
     const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -30,11 +38,21 @@ const LoginForm:React.FC = () => {
         } catch (e) {
             console.error(e);
         }
-        setUserFormData({ login: "", password: "" });
+        setUserFormData({ login: "", password: "", identifier: ""});
     };
 
     return (
-        <Box as="form" onSubmit={handleFormSubmit} width="100%" padding={4} boxShadow="md" borderRadius="lg" background="tomato" color="white">
+        <Form 
+            as="form"
+            onSubmit={handleFormSubmit}
+            width="100%" 
+            padding={4} 
+            boxShadow="md" 
+            borderRadius="lg" 
+            background="tomato" 
+            color="white"
+            // {...( {} as React.ComponentProps<"form"> )}
+        >
             <Stack gap={4} width="full">
                 {showAlert && (
                     // <Alert status="error">
@@ -48,15 +66,16 @@ const LoginForm:React.FC = () => {
 
                 <Text fontSize="md" color="white">Please enter email or username to login</Text>
 
+                <Group attached>
+                <InputAddon pointerEvents='none'><RiUserLine /></InputAddon>
                 <Input
                     type="text"
                     name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
                     value={userFormData.identifier}
-                    leftIcon={<RiUserLine />}
                 />
-
+                </Group>
                 <Input
                     type="password"
                     name="password"
@@ -66,12 +85,13 @@ const LoginForm:React.FC = () => {
                 />
 
                 <HStack justify="flex-end">
-                    <Button colorScheme="blue" type="submit" isDisabled={!(userFormData.identifier && userFormData.password)} rightIcon={<RiArrowRightLine />}>
+                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.identifier && userFormData.password)} >
                         Submit
+                        {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
                 </HStack>
             </Stack>
-        </Box>
+        </Form>
     );
 };
 

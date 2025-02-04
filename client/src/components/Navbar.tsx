@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react-legacy";
 // import { HamburgerIcon } from "@chakra-ui/icons";
 import SignUpForm from "./SignupForm";
-import LoginForm from "./LoginForm";
+// import LoginForm from "./LoginForm";
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
@@ -63,9 +63,9 @@ const AppNavbar = () => {
           <ModalBody>
             <Tabs index={tabIndex} onChange={setTabIndex}>
               <TabPanels>
-                <TabPanel>
+                {/* <TabPanel>
                   <LoginForm handleModalClose={onClose} />
-                </TabPanel>
+                </TabPanel> */}
                 <TabPanel>
                   <SignUpForm handleModalClose={onClose} />
                 </TabPanel>
