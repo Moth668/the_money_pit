@@ -1,16 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "types": ["vite/client"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  },
-  "include": [
-    "src",
-    "vite.config.ts"
-  ],
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
