@@ -65,7 +65,7 @@ const currentInvestments = months.map((month, index) => ({
   investment: 3000 + index * 40,
 }));
 
-const seedUsers = [
+const seedUsers = new User(
   {
     _id: dummyObjectId,
     name: "John Doe",
@@ -77,12 +77,12 @@ const seedUsers = [
     currentSavings,
     currentInvestments,
   },
-];
+);
 
 const seedDB = async () => {
   try {
     await User.deleteMany();
-    await User.insertMany(seedUsers);
+    await seedUsers.save();
     console.log("Database Seeded Successfully!");
     mongoose.connection.close();
   } catch (err) {

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Drawer, Box, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
+import React, { useState, useEffect } from "react";
+import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
+import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon, Logout } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
-// import { auth } from "path-to-auth-module";  // adjust the import as per your file structure
+import auth from "../utils/auth";  // adjust the import as per your file structure
+
+
 
 interface MenuItem {
   text: string;
@@ -12,9 +14,9 @@ interface MenuItem {
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  // const userRole = auth.getUserRole();  // Get the user role (assuming this function exists)
+  // const userRole = auth.;  // Get the user role (assuming this function exists)
 
   const menuItems: MenuItem[] = [
     { text: "Home", icon: <Home />, path: "/" },
@@ -25,9 +27,9 @@ const Dashboard: React.FC = () => {
   ];
 
 
-  // useEffect(() => {
-  //   setIsLoggedIn(auth.isLoggedIn()); 
-  // });
+  useEffect(() => {
+    setIsLoggedIn(auth.loggedIn()); 
+  });
 
   const toggleDrawer = (): void => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -90,9 +92,45 @@ const Dashboard: React.FC = () => {
             ))}
           </List>
         </Box>
+        <Box>
+          {(isLoggedIn)? (
+            <> 
+            <Button onClick={() => auth.logout()} variant="contained"
+            // sx={{
+            //   position: "left", // Make sure it stays on top
+            //   top: 10,
+            //   left: 10,
+            //   zIndex: 1300, // Ensure it's above the Drawer
+            //   color: "white",
+            //   padding: 5 // Optional: Make it visible if background is dark
+            // }}
+          >Logout</Button>
+          <Tooltip title="Logout" placement="left">
+          </Tooltip>
+          </>
+          ):(
+            <>
+            <Button component={Link} to="/LoginForm" variant="contained"
+          // sx={{
+          //   position: "left", // Make sure it stays on top
+          //   top: 10,
+          //   left: 10,
+          //   zIndex: 1300, // Ensure it's above the Drawer
+          //   color: "white", // Optional: Make it visible if background is dark
+          //   padding: 5
+          // }}
+          >Login</Button>
+          <Tooltip title="Login" placement="left">
+          </Tooltip>
+            </>
+          )}
+
+          
+
+        </Box>
       </Drawer>
     </>
   );
 };
-
 export default Dashboard;
+
