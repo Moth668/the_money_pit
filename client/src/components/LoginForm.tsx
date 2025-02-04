@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text } from "@chakra-ui/react-new";
+import { Box, Stack, Input, Group, Button, HStack, Text } from "@chakra-ui/react-new";
+// import {InputAddon}  from "@chakra-ui/react-new";
 // import { Alert } from "@chakra-ui/react-new";
-import { RiUserLine } from "react-icons/ri";
+// import { RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -67,13 +68,13 @@ const LoginForm:React.FC = () => {
                 <Text fontSize="md" color="white">Please enter email or username to login</Text>
 
                 <Group attached>
-                <InputAddon pointerEvents='none'><RiUserLine /></InputAddon>
+                {/* <InputAddon pointerEvents='none'><RiUserLine /></InputAddon> */}
                 <Input
                     type="text"
                     name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
-                    value={userFormData.identifier}
+                    value={userFormData.login}
                 />
                 </Group>
                 <Input
