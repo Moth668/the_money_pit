@@ -74,7 +74,7 @@ const LoginForm:React.FC = () => {
                     name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
-                    value={userFormData.identifier}
+                    value={userFormData.login}
                 />
                 </Group>
                 <Input
@@ -86,7 +86,7 @@ const LoginForm:React.FC = () => {
                 />
 
                 <HStack justify="flex-end">
-                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.identifier && userFormData.password)} >
+                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.login && userFormData.password)} >
                         Submit
                         {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
