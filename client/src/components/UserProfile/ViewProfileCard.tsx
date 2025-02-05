@@ -1,6 +1,5 @@
 import React from "react";
 import "./StyleProfile.css";
-// import profile_icon from "../assets/Elon_Musk.jpg";
 import { useNavigate } from "react-router-dom";
 import { gql } from "graphql-tag";
 import { useQuery } from "@apollo/client";

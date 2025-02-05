@@ -127,6 +127,7 @@ const Dashboard: React.FC = () => {
           ):(
             <>
             <Button component={Link} to="/LoginForm" variant="contained"
+            onClick={() => setIsDrawerOpen(false)}
           // sx={{
           //   position: "left", // Make sure it stays on top
           //   top: 10,
