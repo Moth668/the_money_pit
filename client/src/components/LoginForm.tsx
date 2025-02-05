@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text, Alert, Link } from "@chakra-ui/react-new";
-import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
+import { Box, Stack, Input, Group, Button, HStack, Text } from "@chakra-ui/react-new";
+// import {InputAddon}  from "@chakra-ui/react-new";
+// import { Alert } from "@chakra-ui/react-new";
+// import { RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Router, Link as RouterLink } from "react-router-dom";
 
-const LoginForm: React.FC = () => {
+function Form(props:any) {
+	return (
+		<Box as="form" onSubmit={props.onSubmit} {...props}>
+			{props.children}
+		</Box>
+	)
+}
+
+const LoginForm:React.FC = () => {
     const [userFormData, setUserFormData] = useState({ login: "", password: "" });
     const [showAlert, setShowAlert] = useState(false);
     const [login, { error }] = useMutation(LOGIN_USER);
@@ -30,13 +40,13 @@ const LoginForm: React.FC = () => {
         } catch (e) {
             console.error(e);
         }
-        setUserFormData({ login: "", password: "" });
+        setUserFormData({ login: "", password: "", identifier: ""});
     };
 
     return (
-        <Box 
-            as="form" 
-            onSubmit={handleFormSubmit} 
+        <Form 
+            as="form"
+            onSubmit={handleFormSubmit}
             width="100%" 
             padding={4} 
             boxShadow="md" 
@@ -53,15 +63,16 @@ const LoginForm: React.FC = () => {
 
                 <Text fontSize="md">Please enter email or username to login</Text>
 
+                <Group attached>
+                {/* <InputAddon pointerEvents='none'><RiUserLine /></InputAddon> */}
                 <Input
                     type="text"
                     name="login"
                     placeholder="Your email or username"
                     onChange={handleInputChange}
                     value={userFormData.login}
-                    leftIcon={<RiUserLine />}
                 />
-
+                </Group>
                 <Input
                     type="password"
                     name="password"
@@ -72,12 +83,13 @@ const LoginForm: React.FC = () => {
 
                 <HStack justify="space-between">
                     <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
-                    <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)} rightIcon={<RiArrowRightLine />}>
+                    <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)} >
                         Submit
+                        {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
                 </HStack>
             </Stack>
-        </Box>
+        </Form>
     );
 };
 

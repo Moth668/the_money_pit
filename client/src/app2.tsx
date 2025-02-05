@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Provider } from "@/components/ui/provider";
+import { Provider } from "./components/ui/provider";
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,9 +8,10 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+// import { Avatar, AvatarBadge } from "@chakra-ui/react-legacy";
 import Dashboard from "./pages/Dashboard";
 import './App.css'
+// import { ChakraProvider } from "@chakra-ui/react";
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -41,7 +42,6 @@ const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <Provider>
-        <h1>The Money Pit</h1>
         <Dashboard />
         <Outlet /> {/* Ensure this is inside ApolloProvider but accessible */}
       </Provider>
