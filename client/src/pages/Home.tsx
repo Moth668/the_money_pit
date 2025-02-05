@@ -3,7 +3,7 @@ import reactLogo from '../../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import "../App.css";
 // import { Avatar, AvatarGroup } from "@/components/ui/avatar";
-import { Avatar, AvatarBadge } from "@chakra-ui/react-legacy";
+// import { Avatar, AvatarBadge } from "@chakra-ui/react-legacy";
 
 
 function Home() {
