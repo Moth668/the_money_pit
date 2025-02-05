@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Box, Flex, Image } from '@chakra-ui/react-new';
 import { Link } from 'react-router-dom';
-import bunkerPig from '/src/assets/bunker-pig.jpg';
+import bunkerPig from '../../../assets/bunker-pig.jpg';
 
 const Header: React.FC = () => {
     return (
