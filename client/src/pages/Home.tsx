@@ -1,43 +1,21 @@
-import { useState } from 'react'
-import reactLogo from '../../../assets/react.svg'
-import viteLogo from '/vite.svg'
-import "../App.css";
-// import { Avatar, AvatarGroup } from "@/components/ui/avatar";
-// import { Avatar, AvatarBadge } from "@chakra-ui/react-legacy";
-
+import React from 'react'
+import '../App.css'
 
 function Home() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1>The Money Pit 💰</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
+      <div className="home-container">
+          {/* Header */}
+          <header className="header">
+              <h1>Your Fianacial Success Story</h1>
+          </header>
+
+          {/* Main content */}
+          <main className="main-content">
+              <h2>💰Welcome to The Money Pit!💰</h2>
+                <p style={{ fontFamily: 'Arial, sans-serif' }}>Here you can track your expenses and income, and see how much money you have left at the end of the month.</p>
+                <p style={{ fontFamily: 'Arial, sans-serif' }}>Get started by creating an account or logging in!</p>
+          </main>
       </div>
-      {/* <Demo /> */}
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   );
 }
 

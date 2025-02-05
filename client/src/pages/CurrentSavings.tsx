@@ -6,6 +6,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart, Tooltip, Legend, ArcElement, Title, CategoryScale, LinearScale } from 'chart.js';
 // import LinearScale from 'chart.js/dist/scales/scale.linear';
 import { GET_CURRENT_SAVINGS } from '../utils/queries';
+//import { BorderColor } from '@mui/icons-material';
 
 Chart.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
@@ -40,18 +41,35 @@ const CurrentSavings: React.FC = () => {
       {
         label: 'Savings Breakdown',
         data: amounts,
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        backgroundColor: [
+          '#FF6384', 
+          '#36A2EB', 
+          '#FFCE56'],
+        borderColor: 'black',
+        borderWidth: 3,
         hoverOffset: 4,
       },
     ],
   };
+  
+  // Customize chart options
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: 'black', // Make the legend text black
+        },
+      },
+    },
+  };
 
   return (
-    <Box p={4} borderWidth={1} borderRadius="md" boxShadow="md">
+    <Box p={4} borderWidth={4} borderRadius="md" boxShadow="md">
       <Heading as="h2" size="lg" mb={4}>
         Current Savings
       </Heading>
-      <Pie data={chartData} />
+      <Pie data={chartData} options={options} />
     </Box>
   );
 };
