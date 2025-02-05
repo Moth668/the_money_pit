@@ -11,7 +11,7 @@ interface MenuItem {
   path: string;
 }
 
-import { Avatar } from "@/components/ui/avatar"
+import { Avatar } from "../components/ui/avatar"
 
 const Demo = () => {
   return <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
