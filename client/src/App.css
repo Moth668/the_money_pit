@@ -3,7 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  
+  min-height: 100vh; /* Full height of the viewport */
+  background-color: #006400; /* Set background color for the entire app */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content at the top */
+  color: #eca026; /* Set default text color to white */
 }
 
 .logo {
@@ -36,8 +41,24 @@
 
 .card {
   padding: 2em;
+  background-color: #fff; /* Ensure cards have a white background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  margin-top: 2rem; /* Spacing between cards and other content */
+  color: #000000; /* Default text color in cards */
 }
 
 .read-the-docs {
-  color: #888;
+  color: #048620;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2em;
+  color: #110101; /* Light gray text color */
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon, Logout } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";  // adjust the import as per your file structure

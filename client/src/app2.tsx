@@ -8,7 +8,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import Header from './components/header';
 import Dashboard from "./pages/Dashboard";
 import './App.css'
 
@@ -41,6 +41,7 @@ const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <Provider>
+        <Header />
         <h1>The Money Pit</h1>
         <Dashboard />
         <Outlet /> {/* Ensure this is inside ApolloProvider but accessible */}
