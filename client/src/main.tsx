@@ -11,6 +11,7 @@ import LoginForm from "./components/LoginForm";
 import ViewProfileCard from "./components/UserProfile/ViewProfileCard";
 import ViewWallet from "./components/UserProfile/Wallet";
 import UpdateProfile from "./components/UserProfile/UpdateProfile";
+import SignupForm from "./components/SignupForm";
 
 console.log("Main.tsx is executing...");
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "ViewProfileCard", element: <ViewProfileCard /> },
       { path: "Wallet", element: <ViewWallet /> },
       { path: "update-profile", element: <UpdateProfile /> },
+      { path: 'SignupForm', element: <SignupForm /> },
     ],
   },
 ]);

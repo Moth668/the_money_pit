@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
   ];
 
   useEffect(() => {
-    setIsLoggedIn(auth.loggedIn()); 
+    setIsLoggedIn(auth.loggedIn());
   });
 
   const toggleDrawer = (): void => {

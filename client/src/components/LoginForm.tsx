@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { Box, Stack, Input, Group, Button, HStack, Text } from "@chakra-ui/react-new";
-// import {InputAddon}  from "@chakra-ui/react-new";
-// import { Alert } from "@chakra-ui/react-new";
-// import { RiUserLine } from "react-icons/ri";
+import React, { useState, useEffect } from "react";
+import { Box, Stack, Input, Button, HStack, Text, Alert, Link } from "@chakra-ui/react-new";
+import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { Router, Link as RouterLink } from "react-router-dom";
 
 function Form(props: any) {
   return (
@@ -15,6 +14,11 @@ function Form(props: any) {
     </Box>
   );
 }
+
+const LoginForm: React.FC = () => {
+    const [userFormData, setUserFormData] = useState({ login: "", password: "" });
+    const [showAlert, setShowAlert] = useState(false);
+    const [login, { error }] = useMutation(LOGIN_USER);
 
 const LoginForm: React.FC = () => {
   const [userFormData, setUserFormData] = useState({
@@ -69,6 +73,7 @@ const LoginForm: React.FC = () => {
           </div>
         )}
 
+
         <Text fontSize="md" color="white">
           Please enter email or username to login
         </Text>
@@ -91,8 +96,10 @@ const LoginForm: React.FC = () => {
                     value={userFormData.password}
                 />
 
-                <HStack justify="flex-end">
-                    <Button colorScheme="blue" type="submit" disabled={!(userFormData.login.trim() && userFormData.password.trim())} >
+
+                <HStack justify="space-between">
+                    <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
+                    <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
                         Submit
                         {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
