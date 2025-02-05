@@ -25,8 +25,13 @@ const MonthlyIncome: React.FC = () => {
 
   // Use the correct field name: monthlyIncome (all lowercase)
   const monthlyIncomeData = data.user.monthlyIncome;
-  const months = monthlyIncomeData.map((income: any) => income.month);
-  const amounts = monthlyIncomeData.map((income: any) => income.income);
+  interface IncomeData {
+    month: string;
+    income: number;
+  }
+
+  const months = monthlyIncomeData.map((income: IncomeData) => income.month);
+  const amounts = monthlyIncomeData.map((income: IncomeData) => income.income);
 
   const chartData = {
     labels: months,
@@ -34,11 +39,23 @@ const MonthlyIncome: React.FC = () => {
       {
         label: 'Monthly Income',
         data: amounts,
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.2)',
+        borderColor: 'rgb(14, 1, 1)',
+        backgroundColor: 'rgba(245, 245, 40, 0.94)',
         fill: true,
       },
     ],
+  };
+
+  // Customize chart options
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: 'black', // Make the legend text black
+        },
+      },
+    },
   };
 
   return (
@@ -46,7 +63,7 @@ const MonthlyIncome: React.FC = () => {
       <Heading as="h2" size="lg" mb={4}>
         Monthly Income
       </Heading>
-      <Line data={chartData} />
+      <Line data={chartData} options={options} />
     </Box>
   );
 };

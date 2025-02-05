@@ -1,6 +1,5 @@
 import React from "react";
 import "./StyleProfile.css";
-// import profile_icon from "../assets/Elon_Musk.jpg";
 import { useNavigate } from "react-router-dom";
 import { gql } from "graphql-tag";
 import { useQuery } from "@apollo/client";
@@ -43,6 +42,16 @@ const GET_PROFILE = gql`
 // `;
 
 const ViewProfileCard: React.FC = () => {
+
+  const mockProfileData = {
+    name: "John Doe",
+    email: "johndoe@example.com",
+    picture: "https://via.placeholder.com/150",
+    address: "1234 Elm Street",
+    username: "johndoe",
+  };
+  
+
     // const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
     const dummyUserId = "000000000000000000000001";
     const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE, {
@@ -61,7 +70,7 @@ const ViewProfileCard: React.FC = () => {
     //   return null;
     // }
   
-    const { name, email, picture, address, username } = profileData?.user || {};
+    const { name, email, picture, address, username } = profileData?.user || mockProfileData;
   return (
     <div className="upc">
       <div className="gradiant"></div>

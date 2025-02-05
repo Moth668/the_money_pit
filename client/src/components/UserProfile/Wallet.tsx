@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "graphql-tag";
 import { useNavigate } from "react-router-dom";
+import "./StyleProfile.css"; // Reuse the same CSS file for consistency
 
 const GET_PROFILE = gql`
   query GET_PROFILE($id: ID!) {  
