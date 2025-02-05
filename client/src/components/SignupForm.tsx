@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text, Alert } from "@chakra-ui/react-new";
-import { Alert as AlertOld, AlertIcon, AlertTitle, AlertDescription, InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
+import { Box, Stack, Input, Button, HStack, Text, Alert } from "@chakra-ui/react-new";
+import { Alert as AlertOld, InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
 import { RiMailLine, RiUserLine, RiLockLine } from "react-icons/ri";
 // import { RiArrowRightLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";

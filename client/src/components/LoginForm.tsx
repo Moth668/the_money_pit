@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text, Alert, Link, Group } from "@chakra-ui/react-new";
-import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
+import { Box, Stack, Input, Button, HStack, Text, Group } from "@chakra-ui/react-new";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { Router, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 function Form(props: any) {
   return (
