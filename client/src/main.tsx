@@ -6,7 +6,7 @@ import MonthlyExpenses from "./pages/MonthlyExpenses";
 import CurrentSavings from "./pages/CurrentSavings";
 import InvestmentBalance from "./pages/InvestmentBalance";
 import Home from "./pages/Home";
-import App from "./app2";
+import App from "./App";
 import LoginForm from "./components/LoginForm";
 import ViewProfileCard from "./components/UserProfile/ViewProfileCard";
 import ViewWallet from "./components/UserProfile/Wallet";
