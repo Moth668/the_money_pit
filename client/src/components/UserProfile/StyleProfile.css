@@ -4,6 +4,8 @@
   border-radius: 4px;
   padding-bottom: 20px;
   background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .gradiant {
@@ -40,6 +42,12 @@
   padding-top: 8px;
   padding-bottom: 10px;
   border-radius: 40px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile-button:hover {
+  background: goldenrod;
 }
 
 a {

@@ -88,19 +88,11 @@ const UpdateProfile: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "600px",
-        margin: "20px auto",
-        padding: "40px",
-        border: "2px solid #ccc",
-        borderRadius: "15px",
-        backgroundColor: "#f9f9f9",
-        color: "#333",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <h1
+
+    <div className="upc">
+      <div className="gradiant"></div>
+      <div className="profile-down">
+        <h1
         style={{
           textAlign: "center",
           marginBottom: "20px",
@@ -212,17 +204,17 @@ const UpdateProfile: React.FC = () => {
         />
         <button
           type="button"
-          onClick={addCard}
-          style={{
-            marginTop: "10px",
-            padding: "10px 20px",
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            fontSize: "1rem",
-          }}
+          onClick={addCard} className="profile-button"
+          // style={{
+          //   marginTop: "10px",
+          //   padding: "10px 20px",
+          //   backgroundColor: "#007BFF",
+          //   color: "#fff",
+          //   border: "none",
+          //   borderRadius: "5px",
+          //   cursor: "pointer",
+          //   fontSize: "1rem",
+          // }}
         >
           Add Card
         </button>
@@ -249,16 +241,16 @@ const UpdateProfile: React.FC = () => {
               {/* Show only the last 4 digits */}
               <button
                 type="button"
-                onClick={() => removeCard(index)}
-                style={{
-                  padding: "5px 10px",
-                  backgroundColor: "#dc3545",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontSize: "0.9rem",
-                }}
+                onClick={() => removeCard(index)} className="profile-button"
+                // style={{
+                //   padding: "5px 10px",
+                //   backgroundColor: "#dc3545",
+                //   color: "#fff",
+                //   border: "none",
+                //   borderRadius: "5px",
+                //   cursor: "pointer",
+                //   fontSize: "0.9rem",
+                // }}
               >
                 Remove
               </button>
@@ -267,20 +259,21 @@ const UpdateProfile: React.FC = () => {
         </ul>
       </div>
       <button
-        onClick={handleSave}
-        style={{
-          width: "100%",
-          padding: "10px 20px",
-          backgroundColor: "#28a745",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          fontSize: "1rem",
-        }}
+        onClick={handleSave} className="profile-button"
+        // style={{
+        //   width: "100%",
+        //   padding: "10px 20px",
+        //   backgroundColor: "#28a745",
+        //   color: "#fff",
+        //   border: "none",
+        //   borderRadius: "5px",
+        //   cursor: "pointer",
+        //   fontSize: "1rem",
+        // }}
       >
         Save Profile
       </button>
+    </div>
     </div>
   );
 };

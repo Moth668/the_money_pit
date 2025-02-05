@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "graphql-tag";
 import { useNavigate } from "react-router-dom";
+import "./StyleProfile.css"; // Reuse the same CSS file for consistency
 
 const GET_PROFILE = gql`
   query GetProfile {
@@ -27,34 +28,52 @@ const ViewWallet: React.FC = () => {
   const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE);
   const navigate = useNavigate();
 
-  
-  if (loginLoading || profileLoading) return <p>Loading...</p>;
-
-  if (!loginData?.isLoggedIn) {
-    navigate("/login");
+  // Redirect to login if not logged in
+  if (!loginLoading && !loginData?.isLoggedIn) {
+    navigate("/LoginForm");
     return null;
   }
 
-  const { name, picture, cards, } = profileData?.getProfile || {};
+  // Show loading indicator while data is being fetched
+  if (loginLoading || profileLoading) return <p>Loading...</p>;
 
-<div className="upc">
-<p>Cards: {cards.join(", ")}</p>
-      {picture && <img src={picture} alt={`${name}'s profile`} width="150" />}
-      <button
-        style={{
-          padding: "10px",
-          backgroundColor: "#007BFF",
-          color: "#FFF",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginTop: "20px",
-        }}
-        onClick={() => navigate("/update-profile")}
-      >
-        Update Profile
-      </button>
+  const { name, picture, cards }: { name: string; picture: string; cards: string[] } = profileData?.getProfile || { cards: [] };
+
+  return (
+    <div className="upc">
+      <div className="gradiant"></div>
+      <div className="profile-down">
+        <h2 className="profile-title">Wallet</h2>
+        <div className="profile-description">
+          {picture && (
+            <img
+              src={picture}
+              alt={`${name}'s profile`}
+              className="profile-image"
+            />
+          )}
+          <h3>Saved Cards</h3>
+          <ul>
+            {cards.length > 0 ? (
+              cards.map((card: string, index: number) => (
+                <li key={index}>
+                  **** **** **** {card.slice(-4)}
+                </li>
+              ))
+            ) : (
+              <p>No cards added yet.</p>
+            )}
+          </ul>
+        </div>
+        <button
+          className="profile-button"
+          onClick={() => navigate("/UpdateProfile")}
+        >
+          Update Profile
+        </button>
+      </div>
     </div>
+  );
 };
 
 export default ViewWallet;

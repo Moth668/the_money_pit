@@ -5,9 +5,11 @@ import MonthlyIncome from "./pages/MonthlyIncome";
 import MonthlyExpenses from "./pages/MonthlyExpenses";
 import CurrentSavings from "./pages/CurrentSavings";
 import InvestmentBalance from "./pages/InvestmentBalance";
-import Home from "./pages/Home"
-import App from './app2'
+import Home from "./pages/Home";
+import App from "./app2";
 import LoginForm from "./components/LoginForm";
+import ViewProfileCard from "./components/UserProfile/ViewProfileCard";
+import ViewWallet from "./components/UserProfile/Wallet";
 
 console.log("Main.tsx is executing...");
 
@@ -17,11 +19,13 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'MonthlyIncome', element: <MonthlyIncome /> },
-      { path: 'MonthlyExpenses', element: <MonthlyExpenses /> },
-      { path: 'CurrentSavings', element: <CurrentSavings /> },
-      { path: 'InvestmentBalance', element: <InvestmentBalance /> },
-      { path: 'LoginForm', element: <LoginForm /> },
+      { path: "MonthlyIncome", element: <MonthlyIncome /> },
+      { path: "MonthlyExpenses", element: <MonthlyExpenses /> },
+      { path: "CurrentSavings", element: <CurrentSavings /> },
+      { path: "InvestmentBalance", element: <InvestmentBalance /> },
+      { path: "LoginForm", element: <LoginForm /> },
+      { path: "ViewProfileCard", element: <ViewProfileCard /> },
+      { path: "Wallet", element: <ViewWallet /> },
     ],
   },
 ]);
