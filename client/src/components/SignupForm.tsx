@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text } from "@chakra-ui/react-new";
-import { Alert, AlertIcon, AlertTitle, AlertDescription, InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
+import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text, Alert } from "@chakra-ui/react-new";
+import { Alert as AlertOld, AlertIcon, AlertTitle, AlertDescription, InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
 import { RiMailLine, RiUserLine, RiLockLine } from "react-icons/ri";
 // import { RiArrowRightLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
@@ -55,11 +55,11 @@ const SignUpForm:React.FC = () => {
     background="black" 
     color="pink">
       <Stack gap={4} width="full">
-        {/* {showAlert && (
-           <Alert status="error">
+        {showAlert && (
+           <AlertOld status="error">
              <Alert.Indicator />
-           </Alert>
-         )} */}
+           </AlertOld>
+         )}
 
         <Text fontSize="md" color="white">Create an account</Text>
         
@@ -97,7 +97,7 @@ const SignUpForm:React.FC = () => {
         </InputGroup>
 
         <HStack justify="flex-end">
-          <Button colorScheme="blue" type="submit" disabled={!(userFormData.username && userFormData.email && userFormData.password)} rightIcon={<RiArrowRightLine />}>
+          <Button colorScheme="blue" type="submit" disabled={!(userFormData.username && userFormData.email && userFormData.password)} >
             Submit
             {/* rightIcon={<RiArrowRightLine />} */}
           </Button>

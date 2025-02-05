@@ -40,7 +40,7 @@ const LoginForm:React.FC = () => {
         } catch (e) {
             console.error(e);
         }
-        setUserFormData({ login: "", password: "", identifier: ""});
+        setUserFormData({ login: "", password: ""});
     };
 
     return (
