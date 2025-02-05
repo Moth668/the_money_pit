@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text } from "@chakra-ui/react-new";
-import { InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
-import { Alert } from "@chakra-ui/react-new";
-import { RiArrowRightLine, RiMailLine, RiUserLine, RiLockLine } from "react-icons/ri";
+import { Box, Stack, Input, Group, InputAddon, Button, HStack, Text, Alert } from "@chakra-ui/react-new";
+import { Alert as AlertOld, AlertIcon, AlertTitle, AlertDescription, InputGroup, InputLeftElement } from "@chakra-ui/react-legacy";
+import { RiMailLine, RiUserLine, RiLockLine } from "react-icons/ri";
+// import { RiArrowRightLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
@@ -16,7 +16,7 @@ function Form(props:any) {
 	)
 }
 
-const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
+const SignUpForm:React.FC = () => {
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
@@ -55,11 +55,11 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
     background="black" 
     color="pink">
       <Stack gap={4} width="full">
-        {/* {showAlert && (
-           <Alert status="error">
+        {showAlert && (
+           <AlertOld status="error">
              <Alert.Indicator />
-           </Alert>
-         )} */}
+           </AlertOld>
+         )}
 
         <Text fontSize="md" color="white">Create an account</Text>
         
@@ -84,7 +84,7 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             value={userFormData.email}
           />
         </InputGroup>
-
+          
         <InputGroup>
           <InputLeftElement pointerEvents="none" children={<RiLockLine />} />
           <Input
@@ -96,29 +96,6 @@ const SignupForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
           />
         </InputGroup>
 
-        </Group>
-        <Group attached>
-        <InputAddon><RiMailLine /></InputAddon>
-          <Input
-            type="email"
-            name="email"
-            placeholder="Your email address"
-            onChange={handleInputChange}
-            value={userFormData.email}
-            // leftIcon={<RiMailLine />}
-          />
-        </Group>
-        <Group attached>
-        <InputAddon><RiLockLine /></InputAddon>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Your password"
-            onChange={handleInputChange}
-            value={userFormData.password}
-            // leftIcon={<RiLockLine />}
-          />
-        </Group>
         <HStack justify="flex-end">
           <Button colorScheme="blue" type="submit" disabled={!(userFormData.username && userFormData.email && userFormData.password)} >
             Submit

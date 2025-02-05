@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text, Alert, Link } from "@chakra-ui/react-new";
+import { Box, Stack, Input, Button, HStack, Text, Alert, Link, Group } from "@chakra-ui/react-new";
 import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
@@ -14,11 +14,6 @@ function Form(props: any) {
     </Box>
   );
 }
-
-const LoginForm: React.FC = () => {
-    const [userFormData, setUserFormData] = useState({ login: "", password: "" });
-    const [showAlert, setShowAlert] = useState(false);
-    const [login, { error }] = useMutation(LOGIN_USER);
 
 const LoginForm: React.FC = () => {
   const [userFormData, setUserFormData] = useState({
@@ -56,10 +51,10 @@ const LoginForm: React.FC = () => {
       onSubmit={handleFormSubmit}
       width="100%"
       padding={4}
-      boxShadow="md"
-      borderRadius="lg"
-      background="tomato"
-      color="white"
+      boxShadow="md" 
+      borderRadius="lg" 
+      background="rgb(222, 210, 198)" 
+      color="black"
       // {...( {} as React.ComponentProps<"form"> )}
     >
       <Stack gap={4} width="full">
