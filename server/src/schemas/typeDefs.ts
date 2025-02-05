@@ -33,6 +33,9 @@ export const typeDefs = gql`
     username: String
     email: String
     password: String
+    picture: String
+    address: String
+    cards: [String]
     monthlyIncome: [Income]
     monthlyExpenses: [Expense]
     currentSavings: [Savings]
