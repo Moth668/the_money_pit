@@ -5,23 +5,41 @@ import { gql } from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
 const GET_PROFILE = gql`
-  query GetProfile {
-    getProfile {
-      name
-      email
-      picture
-      address
-      cards
-      username
+  query GET_PROFILE($id: ID!) {  
+  user(id: $id) {  
+    id
+    name
+    username
+    email
+    picture
+    address
+    cards
+    monthlyIncome {
+      month
+      income
+    }
+    monthlyExpenses {
+      month
+      category
+      expense
+    }
+    currentSavings {
+      month
+      savings
+    }
+    currentInvestments {
+      month
+      investment
     }
   }
+}
 `;
 
-const IS_LOGGED_IN = gql`
-  query IsLoggedIn {
-    isLoggedIn
-  }
-`;
+// const IS_LOGGED_IN = gql`
+//   query IsLoggedIn {
+//     isLoggedIn
+//   }
+// `;
 
 const ViewProfileCard: React.FC = () => {
 
@@ -33,21 +51,26 @@ const ViewProfileCard: React.FC = () => {
     username: "johndoe",
   };
   
-  
 
-    const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
-    const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE);
+    // const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
+    const dummyUserId = "000000000000000000000001";
+    const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE, {
+        variables: { id: dummyUserId },  // ✅ Match the query's variable
+      });  
     const navigate = useNavigate();
   
-    if (loginLoading || profileLoading) return <p>Loading...</p>;
+    // if (loginLoading || profileLoading) return <p>Loading...</p>;
+    if ( profileLoading) return <p>Loading...</p>;
   
-    if (!loginData?.isLoggedIn) {
-      navigate("/LoginForm");
-      return null;
-    }
-    const { name, email, picture, address, username } =
-    profileData?.getProfile || mockProfileData;
-    // const { name, email, picture, address, username } = profileData?.getProfile || {};
+    console.log("profileData: ", profileData)
+    console.log("GraphQL Response: ", JSON.stringify(profileData, null, 2));
+
+    // if (!loginData?.isLoggedIn) {
+    //   navigate("/login");
+    //   return null;
+    // }
+  
+    const { name, email, picture, address, username } = profileData?.user || mockProfileData;
   return (
     <div className="upc">
       <div className="gradiant"></div>
@@ -60,9 +83,8 @@ const ViewProfileCard: React.FC = () => {
             <p>Address: {address}</p>
         </div>
 
-
         <div className="profile-button">
-          <a href="./UpdateProfile.tsx">Update Profile</a>
+          <a href="/update-profile">Update Profile</a>
         </div>
         <button className="profile-button"
         onClick={() => navigate("/Wallet")}

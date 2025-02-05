@@ -10,6 +10,7 @@ import App from "./app2";
 import LoginForm from "./components/LoginForm";
 import ViewProfileCard from "./components/UserProfile/ViewProfileCard";
 import ViewWallet from "./components/UserProfile/Wallet";
+import UpdateProfile from "./components/UserProfile/UpdateProfile";
 
 console.log("Main.tsx is executing...");
 
@@ -19,13 +20,14 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "MonthlyIncome", element: <MonthlyIncome /> },
-      { path: "MonthlyExpenses", element: <MonthlyExpenses /> },
-      { path: "CurrentSavings", element: <CurrentSavings /> },
-      { path: "InvestmentBalance", element: <InvestmentBalance /> },
-      { path: "LoginForm", element: <LoginForm /> },
+      { path: 'MonthlyIncome', element: <MonthlyIncome /> },
+      { path: 'MonthlyExpenses', element: <MonthlyExpenses /> },
+      { path: 'CurrentSavings', element: <CurrentSavings /> },
+      { path: 'InvestmentBalance', element: <InvestmentBalance /> },
+      { path: 'LoginForm', element: <LoginForm /> },
       { path: "ViewProfileCard", element: <ViewProfileCard /> },
       { path: "Wallet", element: <ViewWallet /> },
+      { path: "update-profile", element: <UpdateProfile /> },
     ],
   },
 ]);
