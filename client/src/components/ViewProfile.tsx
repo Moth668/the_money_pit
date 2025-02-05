@@ -46,7 +46,7 @@ const ViewProfile: React.FC = () => {
   const dummyUserId = "000000000000000000000001";
   const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE, {
     variables: { id: dummyUserId },  // ✅ Match the query's variable
-  });  
+  });
   const navigate = useNavigate();
 
   // if (loginLoading || profileLoading) return <p>Loading...</p>;

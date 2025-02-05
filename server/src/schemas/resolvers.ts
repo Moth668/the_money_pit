@@ -109,7 +109,7 @@ export const resolvers = {
       const token = signToken(user.username, user.email, user._id);
 
       console.log("Token from signToken:", token);
-      
+
       return { token, user };
     },
   },

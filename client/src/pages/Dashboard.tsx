@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      The Money Pit    
+      The Money Pit
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -108,22 +108,22 @@ const Dashboard: React.FC = () => {
           </List>
         </Box>
         <Box>
-          {(isLoggedIn)? (
-            <> 
-            <Button onClick={() => auth.logout()} variant="contained"
-          >Logout</Button>
-          <Tooltip title="Logout" placement="left">
-            <></>
-          </Tooltip>
-            </>
-          ):(
+          {(isLoggedIn) ? (
             <>
-            <Button component={Link} to="/LoginForm" variant="contained"
-            onClick={() => setIsDrawerOpen(false)}
-          >Login</Button>
-          <Tooltip title="Login" placement="left">
-            <></>
-          </Tooltip>
+              <Button onClick={() => auth.logout()} variant="contained"
+              >Logout</Button>
+              <Tooltip title="Logout" placement="left">
+                <></>
+              </Tooltip>
+            </>
+          ) : (
+            <>
+              <Button component={Link} to="/LoginForm" variant="contained"
+                onClick={() => setIsDrawerOpen(false)}
+              >Login</Button>
+              <Tooltip title="Login" placement="left">
+                <></>
+              </Tooltip>
             </>
           )}
         </Box>

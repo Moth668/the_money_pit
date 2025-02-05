@@ -50,9 +50,9 @@ const LoginForm: React.FC = () => {
       onSubmit={handleFormSubmit}
       width="100%"
       padding={4}
-      boxShadow="md" 
-      borderRadius="lg" 
-      background="rgb(222, 210, 198)" 
+      boxShadow="md"
+      borderRadius="lg"
+      background="rgb(222, 210, 198)"
       color="black"
     >
       <Stack gap={4} width="full">
@@ -71,33 +71,33 @@ const LoginForm: React.FC = () => {
           Please enter email or username to login
         </Text>
 
-                <Group attached>
-                <Input
-                    type="text"
-                    name="login"
-                    placeholder="Your email or username"
-                    onChange={handleInputChange}
-                    value={userFormData.login}
-                />
-                </Group>
-                <Input
-                    type="password"
-                    name="password"
-                    placeholder="Your password"
-                    onChange={handleInputChange}
-                    value={userFormData.password}
-                />
+        <Group attached>
+          <Input
+            type="text"
+            name="login"
+            placeholder="Your email or username"
+            onChange={handleInputChange}
+            value={userFormData.login}
+          />
+        </Group>
+        <Input
+          type="password"
+          name="password"
+          placeholder="Your password"
+          onChange={handleInputChange}
+          value={userFormData.password}
+        />
 
 
-                <HStack justify="space-between">
-                    <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
-                    <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
-                        Submit
-                    </Button>
-                </HStack>
-            </Stack>
-        </Form>
-    );
+        <HStack justify="space-between">
+          <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
+          <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
+            Submit
+          </Button>
+        </HStack>
+      </Stack>
+    </Form>
+  );
 };
 
 export default LoginForm;

@@ -8,15 +8,15 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-function Form(props:any) {
-	return (
-		<Box as="form" onSubmit={props.onSubmit} {...props}>
-			{props.children}
-		</Box>
-	)
+function Form(props: any) {
+  return (
+    <Box as="form" onSubmit={props.onSubmit} {...props}>
+      {props.children}
+    </Box>
+  )
 }
 
-const SignUpForm:React.FC = () => {
+const SignUpForm: React.FC = () => {
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
@@ -46,23 +46,23 @@ const SignUpForm:React.FC = () => {
   };
 
   return (
-    <Form as="form" 
-    onSubmit={handleFormSubmit} 
-    width="100%" 
-    padding={4} 
-    boxShadow="md" 
-    borderRadius="lg" 
-    background="black" 
-    color="pink">
+    <Form as="form"
+      onSubmit={handleFormSubmit}
+      width="100%"
+      padding={4}
+      boxShadow="md"
+      borderRadius="lg"
+      background="black"
+      color="pink">
       <Stack gap={4} width="full">
         {showAlert && (
-           <AlertOld status="error">
-             <Alert.Indicator />
-           </AlertOld>
-         )}
+          <AlertOld status="error">
+            <Alert.Indicator />
+          </AlertOld>
+        )}
 
         <Text fontSize="md" color="white">Create an account</Text>
-        
+
         <InputGroup>
           <InputLeftElement pointerEvents="none" children={<RiUserLine />} />
           <Input
@@ -84,7 +84,7 @@ const SignUpForm:React.FC = () => {
             value={userFormData.email}
           />
         </InputGroup>
-          
+
         <InputGroup>
           <InputLeftElement pointerEvents="none" children={<RiLockLine />} />
           <Input

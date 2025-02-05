@@ -39,8 +39,8 @@ const CurrentSavings: React.FC = () => {
         label: 'Savings Breakdown',
         data: amounts,
         backgroundColor: [
-          '#FF6384', 
-          '#36A2EB', 
+          '#FF6384',
+          '#36A2EB',
           '#FFCE56'],
         borderColor: 'black',
         borderWidth: 3,
@@ -48,7 +48,7 @@ const CurrentSavings: React.FC = () => {
       },
     ],
   };
-  
+
   // Customize chart options
   const options = {
     responsive: true,
