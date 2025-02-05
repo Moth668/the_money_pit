@@ -8,7 +8,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Header from './components/header';
+import Header from './components/Header';
 import Dashboard from "./pages/Dashboard";
 import './App.css'
 // import { ChakraProvider } from "@chakra-ui/react";
