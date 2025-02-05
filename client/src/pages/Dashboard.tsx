@@ -4,6 +4,8 @@ import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Toolti
 import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";  // adjust the import as per your file structure
+import elon from "../../../assets/Elon_Musk.jpg"
+import favicon from "../../../assets/image.png"
 
 interface MenuItem {
   text: string;
@@ -14,7 +16,7 @@ interface MenuItem {
 import { Avatar } from "../components/ui/avatar"
 
 const Demo = () => {
-  return <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
+  return <Avatar name="Elon Musk" src={elon} size="xs" />
 }
 
 
@@ -45,9 +47,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-    {/* <Heading>The Money Pit
-    <Avatar name="Elon Musk" src="./src/assets/Elon_Musk.jpg" size="xs" />
-    </Heading> */}
+      The Money Pit
+      {/* <Avatar name="Elon Musk" src={elon} size="xs" /> */}
+    
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -76,7 +78,7 @@ const Dashboard: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
-              <img src="./src/assets/image.png" alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
+              <img src={favicon} alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
             </Box>
             {menuItems.map((item) => (
               <ListItem
