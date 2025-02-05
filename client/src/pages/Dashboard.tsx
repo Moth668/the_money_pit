@@ -84,6 +84,7 @@ const Dashboard: React.FC = () => {
                 component={Link as React.ElementType}
                 to={item.path}
                 selected={location.pathname === item.path}
+                onClick={() => setIsDrawerOpen(false)}
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
