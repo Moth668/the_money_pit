@@ -4,37 +4,68 @@ import { gql } from "graphql-tag";
 import { useNavigate } from "react-router-dom";
 
 const GET_PROFILE = gql`
-  query GetProfile {
-    getProfile {
-      name
-      email
-      picture
-      address
-      cards
-      username
+  query GET_PROFILE($id: ID!) {  
+  user(id: $id) {  
+    id
+    name
+    username
+    email
+    picture
+    address
+    cards
+    monthlyIncome {
+      month
+      income
+    }
+    monthlyExpenses {
+      month
+      category
+      expense
+    }
+    currentSavings {
+      month
+      savings
+    }
+    currentInvestments {
+      month
+      investment
     }
   }
+}
 `;
 
-const IS_LOGGED_IN = gql`
-  query IsLoggedIn {
-    isLoggedIn
-  }
-`;
+// const IS_LOGGED_IN = gql`
+//   query IsLoggedIn {
+//     isLoggedIn
+//   }
+// `;
 
 const ViewProfile: React.FC = () => {
-  const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
-  const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE);
+  // const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
+
+  const dummyUserId = "000000000000000000000001";
+  const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE, {
+    variables: { id: dummyUserId },  // ✅ Match the query's variable
+  });  
   const navigate = useNavigate();
 
-  if (loginLoading || profileLoading) return <p>Loading...</p>;
+  // if (loginLoading || profileLoading) return <p>Loading...</p>;
+  if (profileLoading) return <p>Loading...</p>;
 
-  if (!loginData?.isLoggedIn) {
-    navigate("/LoginForm");
-    return null;
+  console.log("profileData: ", profileData)
+  console.log("GraphQL Response: ", JSON.stringify(profileData, null, 2));
+
+  if (!profileData?.user) {
+    console.error("User data is missing:", profileData);
+    return <p>Error: No profile data found.</p>;
   }
 
-  const { name, email, picture, address, cards, username } = profileData?.getProfile || {};
+  // if (!loginData?.isLoggedIn) {
+  //   navigate("/LoginForm");
+  //   return null;
+  // }
+
+  const { name, email, picture, address, cards, username } = profileData?.user || {};
 
   return (
     <div style={{ padding: "20px", maxWidth: "600px", margin: "20px auto" }}>
@@ -42,7 +73,7 @@ const ViewProfile: React.FC = () => {
       <p>Name: {name}</p>
       <p>Email: {email}</p>
       <p>Address: {address}</p>
-      <p>Cards: {cards.join(", ")}</p>
+      <p>Cards: {cards ? cards.join(", ") : "No cards available"}</p>
       {picture && <img src={picture} alt={`${name}'s profile`} width="150" />}
       <button
         style={{
