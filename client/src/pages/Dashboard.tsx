@@ -126,9 +126,6 @@ const Dashboard: React.FC = () => {
           </Tooltip>
             </>
           )}
-
-          
-
         </Box>
       </Drawer>
     </>

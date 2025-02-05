@@ -2,7 +2,7 @@ import { useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import './App.css'
-import bunkerPig from './assets/bunker-pig.png'
+// import bunkerPig from './assets/bunker-pig.png'
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <>
       <div>
         
-          <img src={bunkerPig} alt="The Money Pit logo" />
+          {/* <img src={bunkerPig} alt="The Money Pit logo" /> */}
         
       </div>
       <h1>The Money Pit 💰</h1>
