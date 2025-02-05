@@ -110,6 +110,7 @@ export const resolvers = {
       //     throw new AuthenticationError('Invalid credentials');
       // }
       const token = signToken(user.username, user.email, user._id);
+
       console.log("Token from signToken:", token);
       
       return { token, user };
