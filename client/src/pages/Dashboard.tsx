@@ -1,17 +1,24 @@
+
 import React, { useState, useEffect } from "react";
 import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon, Logout } from "@mui/icons-material";
+import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";  // adjust the import as per your file structure
-
-
+import elon from "../../../assets/Elon_Musk.jpg"
+import favicon from "../../../assets/image.png"
 
 interface MenuItem {
   text: string;
   icon: React.ReactNode;
   path: string;
 }
+
+import { Avatar } from "../components/ui/avatar"
+
+const Demo = () => {
+  return <Avatar name="Elon Musk" src={elon} size="xs" />
+}
+
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
@@ -25,11 +32,11 @@ const Dashboard: React.FC = () => {
     { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
     { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
     { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
+    { text: "Profile", icon: <Demo />, path: "/ViewProfileCard" },
   ];
 
-
   useEffect(() => {
-    setIsLoggedIn(auth.loggedIn()); 
+    setIsLoggedIn(auth.loggedIn());
   });
 
   const toggleDrawer = (): void => {
@@ -40,6 +47,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+      The Money Pit
+      {/* <Avatar name="Elon Musk" src={elon} size="xs" /> */}
+    
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -54,7 +64,7 @@ const Dashboard: React.FC = () => {
       </IconButton>
 
       <Drawer
-        variant={isDrawerOpen ? "permanent" : "temporary"}  // "permanent" on large screens, "temporary" on small screens
+        variant={isDrawerOpen ? "permanent" : "temporary"} // "permanent" on large screens, "temporary" on small screens
         open={isDrawerOpen}
         onClose={toggleDrawer}
         sx={{
@@ -68,7 +78,7 @@ const Dashboard: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
-              <img src="./src/assets/image.png" alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
+              <img src={favicon} alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
             </Box>
             {menuItems.map((item) => (
               <ListItem
@@ -79,9 +89,15 @@ const Dashboard: React.FC = () => {
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
-                  backgroundColor: location.pathname === item.path ? "primary.main" : "transparent",
+                  backgroundColor:
+                    location.pathname === item.path
+                      ? "primary.main"
+                      : "white",
                   "&:hover": {
-                    backgroundColor: location.pathname === item.path ? "primary.dark" : "action.hover",
+                    backgroundColor:
+                      location.pathname === item.path
+                        ? "primary.dark"
+                        : "action.hover",
                   },
                 }}
               >
@@ -107,11 +123,13 @@ const Dashboard: React.FC = () => {
             // }}
           >Logout</Button>
           <Tooltip title="Logout" placement="left">
+            <></>
           </Tooltip>
-          </>
+            </>
           ):(
             <>
             <Button component={Link} to="/LoginForm" variant="contained"
+            onClick={() => setIsDrawerOpen(false)}
           // sx={{
           //   position: "left", // Make sure it stays on top
           //   top: 10,
@@ -122,12 +140,10 @@ const Dashboard: React.FC = () => {
           // }}
           >Login</Button>
           <Tooltip title="Login" placement="left">
+            <></>
           </Tooltip>
             </>
           )}
-
-          
-
         </Box>
       </Drawer>
     </>
