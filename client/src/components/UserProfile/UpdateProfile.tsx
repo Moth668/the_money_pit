@@ -205,16 +205,6 @@ const UpdateProfile: React.FC = () => {
         <button
           type="button"
           onClick={addCard} className="profile-button"
-          // style={{
-          //   marginTop: "10px",
-          //   padding: "10px 20px",
-          //   backgroundColor: "#007BFF",
-          //   color: "#fff",
-          //   border: "none",
-          //   borderRadius: "5px",
-          //   cursor: "pointer",
-          //   fontSize: "1rem",
-          // }}
         >
           Add Card
         </button>
@@ -242,15 +232,6 @@ const UpdateProfile: React.FC = () => {
               <button
                 type="button"
                 onClick={() => removeCard(index)} className="profile-button"
-                // style={{
-                //   padding: "5px 10px",
-                //   backgroundColor: "#dc3545",
-                //   color: "#fff",
-                //   border: "none",
-                //   borderRadius: "5px",
-                //   cursor: "pointer",
-                //   fontSize: "0.9rem",
-                // }}
               >
                 Remove
               </button>
@@ -260,16 +241,6 @@ const UpdateProfile: React.FC = () => {
       </div>
       <button
         onClick={handleSave} className="profile-button"
-        // style={{
-        //   width: "100%",
-        //   padding: "10px 20px",
-        //   backgroundColor: "#28a745",
-        //   color: "#fff",
-        //   border: "none",
-        //   borderRadius: "5px",
-        //   cursor: "pointer",
-        //   fontSize: "1rem",
-        // }}
       >
         Save Profile
       </button>
