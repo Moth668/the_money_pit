@@ -24,6 +24,17 @@ const IS_LOGGED_IN = gql`
 `;
 
 const ViewProfileCard: React.FC = () => {
+
+  const mockProfileData = {
+    name: "John Doe",
+    email: "johndoe@example.com",
+    picture: "https://via.placeholder.com/150",
+    address: "1234 Elm Street",
+    username: "johndoe",
+  };
+  
+  
+
     const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
     const { data: profileData, loading: profileLoading } = useQuery(GET_PROFILE);
     const navigate = useNavigate();
@@ -34,8 +45,9 @@ const ViewProfileCard: React.FC = () => {
       navigate("/LoginForm");
       return null;
     }
-  
-    const { name, email, picture, address, username } = profileData?.getProfile || {};
+    const { name, email, picture, address, username } =
+    profileData?.getProfile || mockProfileData;
+    // const { name, email, picture, address, username } = profileData?.getProfile || {};
   return (
     <div className="upc">
       <div className="gradiant"></div>
