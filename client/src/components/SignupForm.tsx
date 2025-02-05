@@ -99,7 +99,6 @@ const SignUpForm:React.FC = () => {
         <HStack justify="flex-end">
           <Button colorScheme="blue" type="submit" disabled={!(userFormData.username && userFormData.email && userFormData.password)} >
             Submit
-            {/* rightIcon={<RiArrowRightLine />} */}
           </Button>
         </HStack>
       </Stack>

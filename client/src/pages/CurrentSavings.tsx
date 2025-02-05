@@ -1,12 +1,9 @@
-// CurrentSavings.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';
 import { Pie } from 'react-chartjs-2';
 import { Chart, Tooltip, Legend, ArcElement, Title, CategoryScale, LinearScale } from 'chart.js';
-// import LinearScale from 'chart.js/dist/scales/scale.linear';
 import { GET_CURRENT_SAVINGS } from '../utils/queries';
-//import { BorderColor } from '@mui/icons-material';
 
 Chart.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 

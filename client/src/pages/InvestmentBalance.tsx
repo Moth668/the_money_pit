@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// InvestmentBalance.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';

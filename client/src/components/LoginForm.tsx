@@ -54,7 +54,6 @@ const LoginForm: React.FC = () => {
       borderRadius="lg" 
       background="rgb(222, 210, 198)" 
       color="black"
-      // {...( {} as React.ComponentProps<"form"> )}
     >
       <Stack gap={4} width="full">
         {showAlert && (
@@ -73,7 +72,6 @@ const LoginForm: React.FC = () => {
         </Text>
 
                 <Group attached>
-                {/* <InputAddon pointerEvents='none'><RiUserLine /></InputAddon> */}
                 <Input
                     type="text"
                     name="login"
@@ -95,7 +93,6 @@ const LoginForm: React.FC = () => {
                     <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
                     <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
                         Submit
-                        {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
                     </Button>
                 </HStack>
             </Stack>

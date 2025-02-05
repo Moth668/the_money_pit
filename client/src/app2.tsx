@@ -45,7 +45,7 @@ const App: React.FC = () => {
         <Header />
         <h1>The Money Pit</h1>
         <Dashboard />
-        <Outlet /> {/* Ensure this is inside ApolloProvider but accessible */}
+        <Outlet />
       </Provider>
     </ApolloProvider>
   );

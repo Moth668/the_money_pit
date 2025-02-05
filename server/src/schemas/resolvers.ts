@@ -106,9 +106,6 @@ export const resolvers = {
         throw new AuthenticationError('Invalid credentials: password incorrect');
       }
 
-      // if (!user || !(await user.isCorrectPassword(password))) {
-      //     throw new AuthenticationError('Invalid credentials');
-      // }
       const token = signToken(user.username, user.email, user._id);
 
       console.log("Token from signToken:", token);

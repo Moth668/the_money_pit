@@ -6,7 +6,6 @@ import {
   Spacer,
   Button,
   HStack,
-  // IconButton,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -20,9 +19,7 @@ import {
   Tab,
   TabPanel,
 } from "@chakra-ui/react-legacy";
-// import { HamburgerIcon } from "@chakra-ui/icons";
 import SignUpForm from "./SignupForm";
-// import LoginForm from "./LoginForm";
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
