@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
 
 
   useEffect(() => {
-    setIsLoggedIn(auth.loggedIn()); 
+    setIsLoggedIn(auth.loggedIn());
   });
 
   const toggleDrawer = (): void => {
@@ -93,39 +93,43 @@ const Dashboard: React.FC = () => {
           </List>
         </Box>
         <Box>
-          {(isLoggedIn)? (
-            <> 
-            <Button onClick={() => auth.logout()} variant="contained"
-            // sx={{
-            //   position: "left", // Make sure it stays on top
-            //   top: 10,
-            //   left: 10,
-            //   zIndex: 1300, // Ensure it's above the Drawer
-            //   color: "white",
-            //   padding: 5 // Optional: Make it visible if background is dark
-            // }}
-          >Logout</Button>
-          <Tooltip title="Logout" placement="left">
-          </Tooltip>
-          </>
-          ):(
+          {(isLoggedIn) ? (
             <>
-            <Button component={Link} to="/LoginForm" variant="contained"
-          // sx={{
-          //   position: "left", // Make sure it stays on top
-          //   top: 10,
-          //   left: 10,
-          //   zIndex: 1300, // Ensure it's above the Drawer
-          //   color: "white", // Optional: Make it visible if background is dark
-          //   padding: 5
-          // }}
-          >Login</Button>
-          <Tooltip title="Login" placement="left">
-          </Tooltip>
+              <Button onClick={() => auth.logout()} variant="contained"
+              // sx={{
+              //   position: "left", // Make sure it stays on top
+              //   top: 10,
+              //   left: 10,
+              //   zIndex: 1300, // Ensure it's above the Drawer
+              //   color: "white",
+              //   padding: 5 // Optional: Make it visible if background is dark
+              // }}
+              >Logout</Button>
+              <Tooltip title="Logout" placement="left">
+                <div>
+                </div>
+              </Tooltip>
+            </>
+          ) : (
+            <>
+              <Button component={Link} to="/LoginForm" variant="contained"
+              // sx={{
+              //   position: "left", // Make sure it stays on top
+              //   top: 10,
+              //   left: 10,
+              //   zIndex: 1300, // Ensure it's above the Drawer
+              //   color: "white", // Optional: Make it visible if background is dark
+              //   padding: 5
+              // }}
+              >Login</Button>
+              <Tooltip title="Login" placement="left">
+                <div>
+                </div>
+              </Tooltip>
             </>
           )}
 
-          
+
 
         </Box>
       </Drawer>
