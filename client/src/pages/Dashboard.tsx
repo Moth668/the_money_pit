@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
             ))}
           </List>
         </Box>
-        <Box>
+        <Box sx={{ mt: "auto", p: 2, textAlign: "center", display: "flex", flexDirection: "row", justifyContent: "center", gap: 1 }}>
           {(isLoggedIn) ? (
             <>
               <Button onClick={() => auth.logout()} variant="contained"
@@ -131,7 +131,15 @@ const Dashboard: React.FC = () => {
               <Tooltip title="Login" placement="left">
                 <></>
               </Tooltip>
+              <Button component={Link} to="/SignUpForm" variant="contained"
+                onClick={() => setIsDrawerOpen(false)}
+                sx={{ mt: "1", textAlign: "center" }}
+              >Sign Up</Button>
+              <Tooltip title="Login" placement="left">
+                <></>
+              </Tooltip>
             </>
+            
           )}
         </Box>
       </Drawer>
