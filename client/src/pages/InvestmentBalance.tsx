@@ -1,4 +1,3 @@
-// InvestmentBalance.tsx
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Box, Heading, Spinner, Text } from '@chakra-ui/react-legacy';
@@ -9,7 +8,7 @@ import { GET_INVESTMENT_BALANCE } from '../utils/queries';
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
 
 const InvestmentBalance: React.FC = () => {
-  const dummyUserId = "000000000000000000000001"; // Make sure this matches the seeded dummy user
+  const dummyUserId = "000000000000000000000002"; // Make sure this matches the seeded dummy user
   const { data, loading, error } = useQuery(GET_INVESTMENT_BALANCE, {
     variables: { id: dummyUserId },
   });
@@ -34,11 +33,51 @@ const InvestmentBalance: React.FC = () => {
       {
         label: 'Investment Balance',
         data: investments,
-        borderColor: 'rgba(153,102,255,1)',
-        backgroundColor: 'rgba(153,102,255,0.2)',
+        borderColor: 'rgb(3, 55, 5)',
+        backgroundColor: 'rgb(232, 206, 9)',
         fill: true,
       },
     ],
+  };
+
+  // Chart options with custom x and y axis title colors
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Months', // Label for the x-axis
+          color: 'black', // Make the x-axis title black
+          font: {
+            size: 16, // Adjust the font size if needed
+          },
+        },
+        ticks: {
+          color: 'black', // Make x-axis ticks black
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Investment Balance', // Label for the y-axis
+          color: 'black', // Make the y-axis title black
+          font: {
+            size: 16, // Adjust the font size if needed
+          },
+        },
+        ticks: {
+          color: 'black', // Make y-axis ticks black
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: 'black', // Make the legend text black
+        },
+      },
+    },
   };
 
   return (
@@ -46,7 +85,7 @@ const InvestmentBalance: React.FC = () => {
       <Heading as="h2" size="lg" mb={4}>
         Investment Balance
       </Heading>
-      <Line data={chartData} />
+      <Line data={chartData} options={options} />
     </Box>
   );
 };

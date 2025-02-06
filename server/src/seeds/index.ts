@@ -59,11 +59,20 @@ const currentSavings = months.map((month, index) => ({
   savings: 1500 + index * 30,
 }));
 
-// Generate currentInvestments: starting at 3000, increasing by 40 each month.
-const currentInvestments = months.map((month, index) => ({
-  month,
-  investment: 3000 + index * 40,
-}));
+// Generate currentInvestments: starting at 3000, increasing by 40 each month with random fluctuations.
+const currentInvestments = months.map((month, index) => {
+  // Base investment that increases by $40 each month
+  let investment = 3000 + index * 40;
+
+  // Introduce a random fluctuation between -5% and 5%
+  const fluctuation = Math.random() * 0.1 - 0.05; // Between -5% and +5%
+  investment += investment * fluctuation;
+
+  return {
+    month,
+    investment: investment.toFixed(2), // Round to 2 decimal places
+  };
+});
 
 const seedUsers = new User(
   {

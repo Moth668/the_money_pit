@@ -28,6 +28,8 @@ interface IUser extends Document {
     username: string;
     email: string;
     password: string;
+    picture?: string;
+    address?: string;
     monthlyIncome: { month: string; income: number }[];
     monthlyExpenses: { month: string; expense: number }[];
     currentSavings: { month: string; savings: number }[];
@@ -51,6 +53,14 @@ const userSchema = new Schema<IUser>(
         password: {
             type: String,
             required: true,
+        },
+        picture: {
+            type: String,
+            default: "",
+        },
+        address: {
+            type: String,
+            default: "",
         },
         monthlyIncome: {
             type: [IncomeSchema],

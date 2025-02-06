@@ -28,31 +28,37 @@ const MonthlyExpenses: React.FC = () => {
   const expenses = data.user.monthlyExpenses;
 
   // Explicitly type the unique months and categories as string arrays
-  const uniqueMonths: string[] = Array.from(new Set(expenses.map((e: any) => e.month)));
-  const uniqueCategories: string[] = Array.from(new Set(expenses.map((e: any) => e.category)));
+  interface Expense {
+    month: string;
+    category: string;
+    expense: number;
+  }
+
+  const uniqueMonths: string[] = Array.from(new Set(expenses.map((e: Expense) => e.month)));
+  const uniqueCategories: string[] = Array.from(new Set(expenses.map((e: Expense) => e.category)));
 
   // For each category, create a dataset with summed expenses per month.
   const datasets = uniqueCategories.map((category: string, index: number) => {
     // For each month, sum expenses for the current category
     const dataForCategory = uniqueMonths.map((month) => {
-      const expensesForMonth = expenses.filter((e: any) => e.month === month && e.category === category);
-      return expensesForMonth.reduce((sum: number, expense: any) => sum + expense.expense, 0);
+      const expensesForMonth = expenses.filter((e: Expense) => e.month === month && e.category === category);
+      return expensesForMonth.reduce((sum: number, expense: Expense) => sum + expense.expense, 0);
     });
 
     // Define some colors for the dataset
     const colors = [
-      "rgba(255,99,132,0.2)",
-      "rgba(54,162,235,0.2)",
-      "rgba(255,206,86,0.2)",
-      "rgba(75,192,192,0.2)",
-      "rgba(153,102,255,0.2)",
+      "rgb(255, 99, 133)",
+      "rgb(54, 163, 235)",
+      "rgb(255, 207, 86)",
+      "rgb(75, 192, 192)",
+      "rgb(153, 102, 255)",
     ];
     const borderColors = [
-      "rgba(255,99,132,1)",
-      "rgba(54,162,235,1)",
-      "rgba(255,206,86,1)",
-      "rgba(75,192,192,1)",
-      "rgba(153,102,255,1)",
+      "rgb(0, 0, 0)",
+      "rgb(0, 0, 0)",
+      "rgb(0, 0, 0)",
+      "rgb(0, 0, 0)",
+      "rgb(0, 0, 0)",
     ];
     const colorIndex = index % colors.length;
 
@@ -62,6 +68,7 @@ const MonthlyExpenses: React.FC = () => {
       backgroundColor: colors[colorIndex],
       borderColor: borderColors[colorIndex],
       borderWidth: 1,
+      borderRadius: 5,
     };
   });
 
@@ -70,12 +77,37 @@ const MonthlyExpenses: React.FC = () => {
     datasets: datasets,
   };
 
+  // Chart options to customize the axes labels to be black
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+        labels: {
+          color: 'black', // Set label color to black
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: 'black', // Set x-axis label color to black
+        },
+      },
+      y: {
+        ticks: {
+          color: 'black', // Set y-axis label color to black
+        },
+      },
+    },
+  };
+
   return (
-    <Box p={4} borderWidth={1} borderRadius="md" boxShadow="md">
+    <Box p={7} borderWidth={5} borderRadius="md" boxShadow="md" borderColor='black'>
       <Heading as="h2" size="lg" mb={4}>
         Monthly Expenses
       </Heading>
-      <Bar data={chartData} />
+      <Bar data={chartData} options={options} />
     </Box>
   );
 };
