@@ -55,7 +55,13 @@ const Dashboard: React.FC = () => {
           top: 10,
           left: 10,
           zIndex: 1300, // Ensure it's above the Drawer
-          backgroundColor: "white", // Optional: Make it visible if background is dark
+          backgroundColor: isDrawerOpen ? "black" : "white", 
+          color: isDrawerOpen ? "white" : "black", 
+          transition: "background-color 0.3s ease, opacity 0.3s ease",
+          "&:hover": {
+            backgroundColor: isDrawerOpen ? "rgba(0, 0, 0, 0.65)" : "rgba(255, 255, 255, 0.65)", // Slightly reduced transparency
+            opacity: 1, // Ensures it does not become too transparent
+          },
         }}
       >
         <MenuIcon />
