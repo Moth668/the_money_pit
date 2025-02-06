@@ -70,8 +70,8 @@ const ViewProfileCard: React.FC = () => {
   //   return null;
   // }
 
-  // const { name, email, picture, address, username } = profileData?.user || mockProfileData;
-  const { name, email, picture, address, username } = mockProfileData;
+  const { name, email, picture, address, username } = profileData?.user || mockProfileData;
+  // const { name, email, picture, address, username } = mockProfileData;
 
   return (
     <div className="profile-container"> {/* Centering container */}

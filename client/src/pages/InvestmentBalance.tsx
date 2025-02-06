@@ -8,7 +8,7 @@ import { GET_INVESTMENT_BALANCE } from '../utils/queries';
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
 
 const InvestmentBalance: React.FC = () => {
-  const dummyUserId = "000000000000000000000001"; // Make sure this matches the seeded dummy user
+  const dummyUserId = "000000000000000000000002"; // Make sure this matches the seeded dummy user
   const { data, loading, error } = useQuery(GET_INVESTMENT_BALANCE, {
     variables: { id: dummyUserId },
   });
