@@ -10,7 +10,7 @@ export const resolvers = {
       // Use args.userId instead of args.id
       if (!args.userId) {
         // Optionally, return a default user or throw an error
-        return await User.findOne({ _id: "000000000000000000000001" });
+        return await User.findOne({ _id: "000000000000000000000002" });
       }
       return await User.findById(args.userId);
     },
@@ -106,13 +106,10 @@ export const resolvers = {
         throw new AuthenticationError('Invalid credentials: password incorrect');
       }
 
-      // if (!user || !(await user.isCorrectPassword(password))) {
-      //     throw new AuthenticationError('Invalid credentials');
-      // }
       const token = signToken(user.username, user.email, user._id);
 
       console.log("Token from signToken:", token);
-      
+
       return { token, user };
     },
   },

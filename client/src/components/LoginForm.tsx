@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Input, Button, HStack, Text, Alert, Link, Group } from "@chakra-ui/react-new";
-import { RiArrowRightLine, RiMailLine, RiUserLine } from "react-icons/ri";
+import { Box, Stack, Input, Button, HStack, Text, Group } from "@chakra-ui/react-new";
 import type { ChangeEvent, FormEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { Router, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 function Form(props: any) {
   return (
@@ -51,11 +50,10 @@ const LoginForm: React.FC = () => {
       onSubmit={handleFormSubmit}
       width="100%"
       padding={4}
-      boxShadow="md" 
-      borderRadius="lg" 
-      background="rgb(222, 210, 198)" 
+      boxShadow="md"
+      borderRadius="lg"
+      background="rgb(222, 210, 198)"
       color="black"
-      // {...( {} as React.ComponentProps<"form"> )}
     >
       <Stack gap={4} width="full">
         {showAlert && (
@@ -73,35 +71,33 @@ const LoginForm: React.FC = () => {
           Please enter email or username to login
         </Text>
 
-                <Group attached>
-                {/* <InputAddon pointerEvents='none'><RiUserLine /></InputAddon> */}
-                <Input
-                    type="text"
-                    name="login"
-                    placeholder="Your email or username"
-                    onChange={handleInputChange}
-                    value={userFormData.login}
-                />
-                </Group>
-                <Input
-                    type="password"
-                    name="password"
-                    placeholder="Your password"
-                    onChange={handleInputChange}
-                    value={userFormData.password}
-                />
+        <Group attached>
+          <Input
+            type="text"
+            name="login"
+            placeholder="Your email or username"
+            onChange={handleInputChange}
+            value={userFormData.login}
+          />
+        </Group>
+        <Input
+          type="password"
+          name="password"
+          placeholder="Your password"
+          onChange={handleInputChange}
+          value={userFormData.password}
+        />
 
 
-                <HStack justify="space-between">
-                    <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
-                    <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
-                        Submit
-                        {/* <InputAddon pointerEvents='none'>rightIcon={<RiArrowRightLine />}</InputAddon> */}
-                    </Button>
-                </HStack>
-            </Stack>
-        </Form>
-    );
+        <HStack justify="space-between">
+          <RouterLink to="/SignupForm" color="blue.500">Sign Up - Register New User</RouterLink>
+          <Button background="rgb(212, 188, 94)" color="black" type="submit" disabled={!(userFormData.login && userFormData.password)}>
+            Submit
+          </Button>
+        </HStack>
+      </Stack>
+    </Form>
+  );
 };
 
 export default LoginForm;

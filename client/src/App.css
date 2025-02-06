@@ -3,12 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  min-height: 100vh; /* Full height of the viewport */
-  background-color: #006400; /* Set background color for the entire app */
+  min-height: 100vh;
+  /* Full height of the viewport */
+  background-color: #006400;
+  /* Set background color for the entire app */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content at the top */
-  color: #eca026; /* Set default text color to white */
+  justify-content: flex-start;
+  /* Align content at the top */
+  color: #eca026;
+  /* Set default text color to white */
 }
 
 .logo {
@@ -17,9 +21,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -28,6 +34,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -41,11 +48,15 @@
 
 .card {
   padding: 2em;
-  background-color: #fff; /* Ensure cards have a white background */
+  background-color: #fff;
+  /* Ensure cards have a white background */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-  margin-top: 2rem; /* Spacing between cards and other content */
-  color: #000000; /* Default text color in cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Add subtle shadow for depth */
+  margin-top: 2rem;
+  /* Spacing between cards and other content */
+  color: #000000;
+  /* Default text color in cards */
 }
 
 .read-the-docs {
@@ -60,5 +71,6 @@ h1 {
 
 p {
   font-size: 1.2em;
-  color: #110101; /* Light gray text color */
+  color: #110101;
+  /* Light gray text color */
 }

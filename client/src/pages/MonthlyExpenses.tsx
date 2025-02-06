@@ -77,17 +77,17 @@ const MonthlyExpenses: React.FC = () => {
     datasets: datasets,
   };
 
-   // Chart options to customize the axes labels to be black
-   const options = {
+  // Chart options to customize the axes labels to be black
+  const options = {
     responsive: true,
     plugins: {
       legend: {
         position: 'top' as const,
         labels: {
           color: 'black', // Set label color to black
+        },
       },
     },
-  },
     scales: {
       x: {
         ticks: {

@@ -1,14 +1,22 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
   ],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@node/*": ["./src/node/*"]
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@node/*": [
+        "./src/node/*"
+      ]
     },
     "jsx": "react-jsx"
   }

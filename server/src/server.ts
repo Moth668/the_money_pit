@@ -2,10 +2,8 @@ import express, { Request, Response } from 'express';
 import { ApolloServer } from '@apollo/server';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { expressMiddleware } from '@apollo/server/express4';
-import path  from 'node:path';
+import path from 'node:path';
 import cors from 'cors';
-// import { loginRouther } from './routes/index.js';
-// import { protectedRouter } from './routes/protected';
 
 import db from './config/connection.js';
 import { authenticateToken } from './utils/auth.js';
