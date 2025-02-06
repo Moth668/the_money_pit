@@ -43,8 +43,6 @@ const Dashboard: React.FC = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  console.log("Hello World!");
-
   return (
     <>
       The Money Pit
