@@ -3,6 +3,7 @@ import "./StyleProfile.css";
 import { useNavigate } from "react-router-dom";
 import { gql } from "graphql-tag";
 import { useQuery } from "@apollo/client";
+import Elon from "../../../../assets/Elon_Musk.jpg"
 
 const GET_PROFILE = gql`
   query GET_PROFILE($id: ID!) {  
@@ -46,11 +47,10 @@ const ViewProfileCard: React.FC = () => {
   const mockProfileData = {
     name: "John Doe",
     email: "johndoe@example.com",
-    picture: "https://via.placeholder.com/150",
+    picture: Elon,
     address: "1234 Elm Street",
     username: "johndoe",
   };
-
 
   // const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
   const dummyUserId = "000000000000000000000001";
@@ -70,27 +70,31 @@ const ViewProfileCard: React.FC = () => {
   //   return null;
   // }
 
-  const { name, email, picture, address, username } = profileData?.user || mockProfileData;
-  return (
-    <div className="upc">
-      <div className="gradiant"></div>
-      <div className="profile-down">
-        <img src={picture} alt="profile picture" />
-        <div className="profile-title">{username}</div>
-        <div className="profile-description">
-          <p>Name: {name}</p>
-          <p>Email: {email}</p>
-          <p>Address: {address}</p>
-        </div>
+  // const { name, email, picture, address, username } = profileData?.user || mockProfileData;
+  const { name, email, picture, address, username } = mockProfileData;
 
-        <div className="profile-button">
-          <a href="/update-profile">Update Profile</a>
+  return (
+    <div className="profile-container"> {/* Centering container */}
+      <div className="upc">
+        <div className="gradiant"></div>
+        <div className="profile-down">
+          <img src={picture} alt="profile picture" />
+          <div className="profile-title">{username}</div>
+          <div className="profile-description">
+            <p><strong>Name</strong>: {name}</p>
+            <p><strong>Email</strong>: {email}</p>
+            <p><strong>Address</strong>: {address}</p>
+          </div>
+
+          <div className="profile-button">
+            <a href="/update-profile">Update Profile</a>
+          </div>
+          <button className="profile-button"
+            onClick={() => navigate("/Wallet")}
+          >
+            View Wallet
+          </button>
         </div>
-        <button className="profile-button"
-          onClick={() => navigate("/Wallet")}
-        >
-          View Wallet
-        </button>
       </div>
     </div>
   );

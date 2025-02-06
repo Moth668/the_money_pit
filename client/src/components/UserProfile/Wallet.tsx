@@ -63,57 +63,27 @@ const ViewWallet: React.FC = () => {
 
   const { name, picture, cards, } = profileData?.user || {};
   return (
-    <div className="upc">
-      {cards && cards.length > 0 ? (
-        <p>Cards: {cards.join(", ")}</p>
-      ) : (
-        <div
-          style={{
-            padding: "10px",
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            border: "1px solid #f5c6cb",
-            borderRadius: "5px",
-            marginBottom: "10px",
-            textAlign: "center",
-          }}
-        >
-          <p>No cards available</p>
-          <button
-            style={{
-              padding: "8px",
-              backgroundColor: "#28a745",
-              color: "#FFF",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/add-card")}
-          >
-            Add a Card
-          </button>
-        </div>
-      )}
+    <div className="wallet-container"> {/* Centering container */}
+      <div className="upc">
+        {cards && cards.length > 0 ? (
+          <p>Cards: {cards.join(", ")}</p>
+        ) : (
+          <div className="no-cards-box">
+            <p>No cards available</p>
+            <button className="add-card-button" onClick={() => navigate("/add-card")}>
+              Add a Card
+            </button>
+          </div>
+        )}
 
-      {picture && <img src={picture} alt={`${name}'s profile`} width="150" />}
+        {picture && <img src={picture} alt={`${name}'s profile`} width="150" />}
 
-      <button
-        style={{
-          padding: "10px",
-          backgroundColor: "#007BFF",
-          color: "#FFF",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginTop: "20px",
-        }}
-        onClick={() => navigate("/update-profile")}
-      >
-        Update Profile
-      </button>
+        <button className="profile-button" onClick={() => navigate("/update-profile")}>
+          Update Profile
+        </button>
+      </div>
     </div>
-
-  )
+  );
 };
 
 export default ViewWallet;
