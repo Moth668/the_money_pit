@@ -10,7 +10,7 @@ export const resolvers = {
       // Use args.userId instead of args.id
       if (!args.userId) {
         // Optionally, return a default user or throw an error
-        return await User.findOne({ _id: "000000000000000000000001" });
+        return await User.findOne({ _id: "000000000000000000000002" });
       }
       return await User.findById(args.userId);
     },
