@@ -1,46 +1,47 @@
-/* Center the entire profile card */
+
 .profile-container {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: flex-start; /* Moves content towards the top */
+  justify-content: flex-start; 
+  align-items: flex-start; 
   height: 100vh; /* Full viewport height */
-  width: 100%; /* Full width */
-  padding-top: 50px; /* Moves card down slightly while staying near the top */
+  width: 100vw; /* Full width */
+  padding-top: 44px; /* Moves card down slightly while staying near the top */
 }
 
 .upc {
-  width: 400px;
-  margin: 20px;
-  border-radius: 4px;
-  padding-bottom: 20px;
+  width: 500px;
+  margin-left: -105px;
+  border-radius: 0 75px 75px 0;
+  padding-bottom: 50px;
   background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
+  box-shadow: 0 25px 1px rgba(0, 0, 0, 0.1);
+  position: left;
 }
 
 .gradiant {
-  background-image: linear-gradient(#8ca6db, #2a4fb7);
+  background-image: linear-gradient(#eca026, rgb(222, 210, 198));
   height: 125px;
   position: relative;
   z-index: 1; /* Keeps it behind */
+  border-radius: 0 75px;
 }
 
 .profile-down {
   background: white;
-  border-radius: 75px; /* Rounded top corners */
+  border-radius: 0 75px 75px; /* Rounded top corners */
   padding: 20px;
   text-align: center;
   position: relative; /* Allows it to overlap */
-  margin-top: -75px; /* Moves it upwards over the gradient */
+  margin-top: -77px; /* Moves it upwards over the gradient */
   z-index: 2; /* Ensures it stays above the gradient */
 }
 
 .profile-down img {
   display: block;
   margin: auto;
-  height: 150px;
-  border-radius: 100px;
-  padding: 5px;
+  height: 125px;
+  border-radius: 30px;
+  /* padding: 5px; */
   background: white;
 }
 
@@ -57,27 +58,31 @@
   color: black;
 }
 
+.profile-buttons-container {
+  display: flex;
+  justify-content: center; 
+  padding: auto; 
+  margin: auto;
+  gap: 10px;
+}
+
 .profile-button {
   font-size: 16px;
   background: #2a4fb7;
   color: white;
-  margin: 10px auto;
-  padding: 8px 20px;
-  border-radius: 40px;
+  border-radius: 75px;
   cursor: pointer;
   text-align: center;
   width: fit-content;
-}
+  }
 
 .profile-button:hover {
-  background: goldenrod;
+  background: goldenrod !important;
 }
 
 .profile-button a {
   text-decoration: none;
   color: white;
-  display: inline-block;
-  padding: 5px 10px;
 }
 
 /* Center the Wallet component */
