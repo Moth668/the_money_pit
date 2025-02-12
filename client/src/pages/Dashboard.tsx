@@ -1,11 +1,27 @@
-
 import React, { useState, useEffect } from "react";
-import { Drawer, Box, Button, List, ListItem, ListItemIcon, ListItemText, Tooltip, IconButton } from "@mui/material";
-import { Home, AttachMoney, MoneyOff, TrendingUp, ListAlt, Menu as MenuIcon } from "@mui/icons-material";
+import {
+  Drawer,
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
+import {
+  Home,
+  AttachMoney,
+  MoneyOff,
+  TrendingUp,
+  ListAlt,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";
-import elon from "../../../assets/Elon_Musk.jpg"
-import favicon from "../../../assets/image.png"
+import elon from "../../../assets/Elon_Musk.jpg";
+import favicon from "../../../assets/image.png";
 
 interface MenuItem {
   text: string;
@@ -13,12 +29,11 @@ interface MenuItem {
   path: string;
 }
 
-import { Avatar } from "../components/ui/avatar"
+import { Avatar } from "../components/ui/avatar";
 
 const Demo = () => {
-  return <Avatar name="Elon Musk" src={elon} size="xs" />
-}
-
+  return <Avatar name="Elon Musk" src={elon} size="xs" />;
+};
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
@@ -45,7 +60,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      The Money Pit
       <IconButton
         onClick={toggleDrawer}
         sx={{
@@ -53,11 +67,13 @@ const Dashboard: React.FC = () => {
           top: 10,
           left: 10,
           zIndex: 1300, // Ensure it's above the Drawer
-          backgroundColor: isDrawerOpen ? "black" : "white", 
-          color: isDrawerOpen ? "white" : "black", 
+          backgroundColor: isDrawerOpen ? "black" : "white",
+          color: isDrawerOpen ? "white" : "black",
           transition: "background-color 0.3s ease, opacity 0.3s ease",
           "&:hover": {
-            backgroundColor: isDrawerOpen ? "rgba(0, 0, 0, 0.65)" : "rgba(255, 255, 255, 0.65)", // Slightly reduced transparency
+            backgroundColor: isDrawerOpen
+              ? "rgba(0, 0, 0, 0.65)"
+              : "rgba(255, 255, 255, 0.65)", // Slightly reduced transparency
             opacity: 1, // Ensures it does not become too transparent
           },
         }}
@@ -80,7 +96,11 @@ const Dashboard: React.FC = () => {
         <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <List>
             <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
-              <img src={favicon} alt="Money Pit Favicon" style={{ width: "80%", height: "auto" }} />
+              <img
+                src={favicon}
+                alt="Money Pit Favicon"
+                style={{ width: "80%", height: "auto" }}
+              />
             </Box>
             {menuItems.map((item) => (
               <ListItem
@@ -88,14 +108,12 @@ const Dashboard: React.FC = () => {
                 component={Link as React.ElementType}
                 to={item.path}
                 selected={location.pathname === item.path}
-                onClick={() => setIsDrawerOpen(false)}
+                // onClick={() => setIsDrawerOpen(false)}
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
                   backgroundColor:
-                    location.pathname === item.path
-                      ? "primary.main"
-                      : "white",
+                    location.pathname === item.path ? "primary.main" : "white",
                   "&:hover": {
                     backgroundColor:
                       location.pathname === item.path
@@ -112,32 +130,52 @@ const Dashboard: React.FC = () => {
             ))}
           </List>
         </Box>
-        <Box sx={{ mt: "auto", p: 2, textAlign: "center", display: "flex", flexDirection: "row", justifyContent: "center", gap: 1 }}>
-          {(isLoggedIn) ? (
+        <Box
+          sx={{
+            mt: "auto",
+            p: 2,
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            gap: 1,
+          }}
+        >
+          {isLoggedIn ? (
             <>
-              <Button onClick={() => auth.logout()} variant="contained"
-              >Logout</Button>
+              <Button onClick={() => auth.logout()} variant="contained">
+                Logout
+              </Button>
               <Tooltip title="Logout" placement="left">
                 <></>
               </Tooltip>
             </>
           ) : (
             <>
-              <Button component={Link} to="/LoginForm" variant="contained"
+              <Button
+                component={Link}
+                to="/LoginForm"
+                variant="contained"
                 onClick={() => setIsDrawerOpen(false)}
-              >Login</Button>
+              >
+                Login
+              </Button>
               <Tooltip title="Login" placement="left">
                 <></>
               </Tooltip>
-              <Button component={Link} to="/SignUpForm" variant="contained"
+              <Button
+                component={Link}
+                to="/SignUpForm"
+                variant="contained"
                 onClick={() => setIsDrawerOpen(false)}
                 sx={{ mt: "1", textAlign: "center" }}
-              >Sign Up</Button>
+              >
+                Sign Up
+              </Button>
               <Tooltip title="Login" placement="left">
                 <></>
               </Tooltip>
             </>
-            
           )}
         </Box>
       </Drawer>
@@ -145,4 +183,3 @@ const Dashboard: React.FC = () => {
   );
 };
 export default Dashboard;
-

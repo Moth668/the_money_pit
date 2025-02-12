@@ -4,7 +4,7 @@ import bunkerPig from '../../../assets/bunker-pig.jpg';
 
 const Header: React.FC = () => {
     return (
-        <Box as="header" bg="gray.800" p={4} height={{ base: '150px', sm: '200px', md: '250px' }}>
+        <Box as="header" bg="rgb(222, 210, 198)" p={4} height={{ base: '150px', sm: '200px', md: '250px' }}>
             <Flex align="center" justify="center" height="100%">
                 <Link to="/">
                     <Box
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
                         width= "100%"
                         height={{ base: "100px", sm: "200px", md: "250px" }} // Fixed height
                         overflow="hidden"
-                        border="2px solid black"
+                        border=""
                     >
                         <Image
                             src={bunkerPig}
