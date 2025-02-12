@@ -3,7 +3,7 @@ import "./StyleProfile.css";
 import { useNavigate } from "react-router-dom";
 import { gql } from "graphql-tag";
 import { useQuery } from "@apollo/client";
-import Elon from "../../../../assets/Elon_Musk.jpg";
+import favicon from "../../../../assets/Adobe Express - file.png";
 
 const GET_PROFILE = gql`
   query GET_PROFILE($id: ID!) {
@@ -44,11 +44,11 @@ const GET_PROFILE = gql`
 
 const ViewProfileCard: React.FC = () => {
   const mockProfileData = {
-    name: "John Doe",
-    email: "johndoe@example.com",
-    picture: Elon,
-    address: "1234 Elm Street",
-    username: "johndoe",
+    name: "John Sow",
+    email: "moneypig@example.com",
+    picture: favicon,
+    address: "5505 Farnam St, Omaha, NE 68132",
+    username: "Money_Pig668",
   };
 
   // const { data: loginData, loading: loginLoading } = useQuery(IS_LOGGED_IN);
@@ -62,7 +62,6 @@ const ViewProfileCard: React.FC = () => {
 
   console.log("profileData: ", profileData);
   console.log("GraphQL Response: ", JSON.stringify(profileData, null, 2));
-
 
   const { name, email, picture, address, username } =
     profileData?.user || mockProfileData;

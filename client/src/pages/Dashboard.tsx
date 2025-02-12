@@ -20,8 +20,8 @@ import {
 } from "@mui/icons-material";
 import { useLocation, Link } from "react-router-dom";
 import auth from "../utils/auth";
-import elon from "../../../assets/Elon_Musk.jpg";
-import favicon from "../../../assets/image.png";
+// import elon from "../../../assets/Elon_Musk.jpg";
+import favicon from "../../../assets/Adobe Express - file.png";
 
 interface MenuItem {
   text: string;
@@ -32,14 +32,13 @@ interface MenuItem {
 import { Avatar } from "../components/ui/avatar";
 
 const Demo = () => {
-  return <Avatar name="Elon Musk" src={elon} size="xs" />;
+  return <Avatar name="Money Pit" size="xs" />;
 };
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  // const userRole = auth.;  // Get the user role (assuming this function exists)
 
   const menuItems: MenuItem[] = [
     { text: "Home", icon: <Home />, path: "/" },
