@@ -5,17 +5,17 @@
   align-items: flex-start; 
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full width */
-  padding-top: 44px; /* Moves card down slightly while staying near the top */
+  padding-top: 87px; /* Moves card down slightly while staying near the top */
 }
 
 .upc {
-  width: 500px;
-  margin-left: -105px;
+  width: auto;
+  margin-left: 0;
   border-radius: 0 75px 75px 0;
   padding-bottom: 50px;
   background: white;
-  box-shadow: 0 25px 1px rgba(0, 0, 0, 0.1);
-  position: left;
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
 }
 
 .gradiant {

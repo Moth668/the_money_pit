@@ -17,37 +17,24 @@ import {
   TrendingUp,
   ListAlt,
   Menu as MenuIcon,
+  Person as PersonIcon,
 } from "@mui/icons-material";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, Outlet } from "react-router-dom";
 import auth from "../utils/auth";
-// import elon from "../../../assets/Elon_Musk.jpg";
 import favicon from "../../../assets/Adobe Express - file.png";
+import ViewProfileCard from "../components/UserProfile/ViewProfileCard";
 
 interface MenuItem {
   text: string;
   icon: React.ReactNode;
-  path: string;
+  path?: string; // Optional because Profile will have a different behavior
 }
-
-import { Avatar } from "../components/ui/avatar";
-
-const Demo = () => {
-  return <Avatar name="Money Pit" size="xs" />;
-};
 
 const Dashboard: React.FC = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-
-  const menuItems: MenuItem[] = [
-    { text: "Home", icon: <Home />, path: "/" },
-    { text: "Income", icon: <AttachMoney />, path: "/MonthlyIncome" },
-    { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
-    { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
-    { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
-    { text: "Profile", icon: <Demo />, path: "/ViewProfileCard" },
-  ];
+  const [isProfileVisible, setIsProfileVisible] = useState<boolean>(false); // Controls profile card visibility
 
   useEffect(() => {
     setIsLoggedIn(auth.loggedIn());
@@ -57,31 +44,45 @@ const Dashboard: React.FC = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  const toggleProfileCard = (): void => {
+    setIsProfileVisible(!isProfileVisible);
+  };
+
+  const menuItems: MenuItem[] = [
+    { text: "Home", icon: <Home />, path: "/" },
+    { text: "Income", icon: <AttachMoney />, path: "/MonthlyIncome" },
+    { text: "Expenses", icon: <MoneyOff />, path: "/MonthlyExpenses" },
+    { text: "Savings", icon: <TrendingUp />, path: "/CurrentSavings" },
+    { text: "Investments", icon: <ListAlt />, path: "/InvestmentBalance" },
+  ];
+
   return (
-    <>
+    <Box sx={{ display: "flex", height: "100vh", width: "100vw" }}>
+      {/* Toggle Sidebar Button */}
       <IconButton
         onClick={toggleDrawer}
         sx={{
-          position: "absolute", // Make sure it stays on top
+          position: "absolute",
           top: 10,
           left: 10,
-          zIndex: 1300, // Ensure it's above the Drawer
+          zIndex: 1300,
           backgroundColor: isDrawerOpen ? "black" : "white",
           color: isDrawerOpen ? "white" : "black",
           transition: "background-color 0.3s ease, opacity 0.3s ease",
           "&:hover": {
             backgroundColor: isDrawerOpen
               ? "rgba(0, 0, 0, 0.65)"
-              : "rgba(255, 255, 255, 0.65)", // Slightly reduced transparency
-            opacity: 1, // Ensures it does not become too transparent
+              : "rgba(255, 255, 255, 0.65)",
+            opacity: 1,
           },
         }}
       >
         <MenuIcon />
       </IconButton>
 
+      {/* Sidebar Drawer */}
       <Drawer
-        variant={isDrawerOpen ? "permanent" : "temporary"} // "permanent" on large screens, "temporary" on small screens
+        variant={isDrawerOpen ? "permanent" : "temporary"}
         open={isDrawerOpen}
         onClose={toggleDrawer}
         sx={{
@@ -98,16 +99,17 @@ const Dashboard: React.FC = () => {
               <img
                 src={favicon}
                 alt="Money Pit Favicon"
-                style={{ width: "80%", height: "auto" }}
+                style={{ width: "100%", height: "auto" }}
               />
             </Box>
+
+            {/* Menu Items */}
             {menuItems.map((item) => (
               <ListItem
                 key={item.text}
                 component={Link as React.ElementType}
-                to={item.path}
+                to={item.path ?? "#"}
                 selected={location.pathname === item.path}
-                // onClick={() => setIsDrawerOpen(false)}
                 sx={{
                   textDecoration: "none",
                   color: "inherit",
@@ -127,8 +129,31 @@ const Dashboard: React.FC = () => {
                 <ListItemText primary={item.text} />
               </ListItem>
             ))}
+
+            {/* Profile Button (Toggles ViewProfileCard) */}
+            <ListItem
+              component="li"
+              onClick={toggleProfileCard} // Toggle ProfileCard visibility
+              sx={{
+                backgroundColor: isProfileVisible ? "primary.main" : "white",
+                "&:hover": {
+                  backgroundColor: isProfileVisible
+                    ? "primary.dark"
+                    : "action.hover",
+                },
+              }}
+            >
+              <Tooltip title="Profile" placement="right">
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+              </Tooltip>
+              <ListItemText primary="Profile" />
+            </ListItem>
           </List>
         </Box>
+
+        {/* Login/Logout Buttons */}
         <Box
           sx={{
             mt: "auto",
@@ -141,44 +166,47 @@ const Dashboard: React.FC = () => {
           }}
         >
           {isLoggedIn ? (
-            <>
-              <Button onClick={() => auth.logout()} variant="contained">
-                Logout
-              </Button>
-              <Tooltip title="Logout" placement="left">
-                <></>
-              </Tooltip>
-            </>
+            <Button onClick={() => auth.logout()} variant="contained">
+              Logout
+            </Button>
           ) : (
             <>
-              <Button
-                component={Link}
-                to="/LoginForm"
-                variant="contained"
-                onClick={() => setIsDrawerOpen(false)}
-              >
+              <Button component={Link} to="/LoginForm" variant="contained">
                 Login
               </Button>
-              <Tooltip title="Login" placement="left">
-                <></>
-              </Tooltip>
               <Button
                 component={Link}
                 to="/SignUpForm"
                 variant="contained"
-                onClick={() => setIsDrawerOpen(false)}
                 sx={{ mt: "1", textAlign: "center" }}
               >
                 Sign Up
               </Button>
-              <Tooltip title="Login" placement="left">
-                <></>
-              </Tooltip>
             </>
           )}
         </Box>
       </Drawer>
-    </>
+      <Box
+        sx={{
+          display: "flex",
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        {/* Conditionally Show Profile Card */}
+        {isProfileVisible && (
+          <Box sx={{ flexShrink: 0 }}>
+            <ViewProfileCard />
+          </Box>
+        )}
+
+        <Box sx={{ flexGrow: 1, overflowY: "auto", padding: "20px" }}>
+          <Outlet /> {/* This will render the current page */}
+        </Box>
+      </Box>
+    </Box>
   );
 };
+
 export default Dashboard;
